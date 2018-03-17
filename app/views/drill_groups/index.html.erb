@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Drill Groups</h1>
+    </div>
+
+    <div class="col-4">
+      <%= link_to 'Add Group', new_drill_group_path %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <% @drill_groups.each do |drill_group| %>
+     <div class="row">
+       <div class="col-8">
+        <%= drill_group.name %>
+       </div>
+
+       <div class="col-4">
+        <%= link_to 'View', drill_group_path(drill_group) %>
+        <%= link_to 'Edit', edit_drill_group_path(drill_group) %>
+        <%= link_to 'Delete', drill_group_path(drill_group), method: :delete %>
+       </div>
+     </div>
+  <% end %>
+</div>
