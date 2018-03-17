@@ -1,0 +1,13 @@
+<%= simple_form_for @drill_group do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :description %>
+
+  <%= f.label :level %>
+  <%= f.collection_radio_buttons :level, @drill_group.available_levels, :first, :last %>
+
+  <%= f.input :points, as: :integer %>
+
+  <%= f.submit 'Save' %>
+
+<% end %>

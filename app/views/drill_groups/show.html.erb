@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1><%= @drill_group.name %></h1>
+    </div>
+    <div class="col-4">
+      <%= link_to 'Edit Group', edit_drill_group_path(@drill_group) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <p><%= @drill_group.description %></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <% @drill_group.questions.each do |question| %>
+    <div class="row">
+      <div class="col-8">
+        <p>Drill: <%= question.description %></p>
+      </div>
+      <div class="col-4">
+        <%= link_to 'Edit', edit_question_path(question) %>
+        <%= link_to 'Delete', question_path(question), method: :delete %>
+      </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <h5>Add New Drill</h5>
+  <%= simple_form_for [@drill_group, @question] do |q| %>
+    <%= q.input :description %>
+
+    <%= q.simple_fields_for :solutions do |sol| %>
+      <%= render 'solution_fields', f: sol %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Add Another Solution', q, :solutions %>
+    </div>
+
+    <%= q.submit 'Save Drill' %>
+  <% end %>
+</div>
