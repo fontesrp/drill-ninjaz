@@ -10,4 +10,8 @@ Rails.application.routes.draw do
       resources :solutions
     end
   end
+
+  get('/sign_up/thanks', { to: 'users#thanks' })
+  get('/forgot_password', {to: 'password_resets#forgot_password'})
+
 end
