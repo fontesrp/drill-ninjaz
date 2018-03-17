@@ -26,6 +26,7 @@ super_user = User.create(
   full_name = Faker::SiliconValley.character.split(' ')
   first_name = full_name[0]
   last_name = full_name[1]
+
   User.create(
     first_name: first_name,
     last_name: last_name,
@@ -39,6 +40,7 @@ users = User.all
 
 15.times.each do |num|
   points = rand(10..300)
+  score = rand(10..300)
   level = ['beginner', 'intermediate', 'advanced'][rand(0..2)]
   d = DrillGroup.create({
     name: Faker::ProgrammingLanguage.name,
@@ -64,13 +66,23 @@ users = User.all
             question: q
           )
         end
+        if q.valid?
+          rand(1..7).times.each
+            Attempt.create(
+              user: users.sample,
+              drill_group: d,
+              score: score,
+              current_question: q,
+            )
+        end
       end
     end
   end
 end
 
-puts "Created #{User.count} users"
-puts "Created #{DrillGroup.count} Drill Groups"
-puts "Created #{Question.count} Questions"
-puts "Created #{Solution.count} Solutions"
+puts Cowsay.say "Created #{User.count} users", :frogs
+puts Cowsay.say "Created #{DrillGroup.count} Drill Groups", :sheep
+puts Cowsay.say "Created #{Question.count} Questions", :tux
+puts Cowsay.say "Created #{Solution.count} Solutions", :cow
+puts Cowsay.say "Created #{Attempt.count} Attempts", :tux
 puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
