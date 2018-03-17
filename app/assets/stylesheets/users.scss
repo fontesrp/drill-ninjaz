@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  justify-content: space-around;
+}
+.label {
+  width: 30%
+}
+.form {
+  width: 70%
+}
+.form-input {
+  display: flex;
+}
