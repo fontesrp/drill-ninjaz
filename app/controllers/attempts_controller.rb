@@ -1,21 +1,22 @@
 class AttemptsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_question [:destroy]
-  before_action :find_drill_group [:destroy]
+  before_action :find_drill_group, except: [:destroy]
 
   def create
-    @drill_group = Drill_group.find params[:question_id]
-    @question = Question.find params[:question_id]
-    attempt = Attempt.new user: current_user, question: question
-    attempt.save
+    @drill_group = DrillGroup.find params[:drill_group_id]
+    attempt = Attempt.new user: current_user, drill_group: @drill_group
+    if attempt.save
+      redirect_to attempts_path
+    else
+      redirect_to root_path
+    end
   end
 
   def index
-    @attempts = current_user.current_attempts
+    @attempts = current_user.drill_group_attempts
   end
 
   def show
-
   end
 
   def destroy
@@ -24,10 +25,7 @@ class AttemptsController < ApplicationController
   end
 
   private
-  def find_question
-    @question = Question.find params[:question_id]
-  end
   def find_drill_group
-    @drill_group = Drill_group.find params[:drill_group_id]
+    @drill_group = DrillGroup.find params[:drill_group_id]
   end
 end
