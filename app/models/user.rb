@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :drill_groups, dependent: :destroy
   has_many :attempts, dependent: :destroy
+  has_many :drill_group_attempts, through: :attempts, source: :drill_group
   has_many :current_questions, class_name: "Question", through: :attempts
 
   validates :first_name, :last_name, presence: true
