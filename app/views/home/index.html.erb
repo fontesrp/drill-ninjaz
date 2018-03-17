@@ -1,8 +1,13 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container home-page">
     <h1 class="display-3">DrillNinjaz</h1>
-    <p class="lead"><img src="assets/images/ninja.png"></p>
+    <p class="lead">
+      <%= image_tag("gears.png", class: "gears", style: "border-radius 5px", width: '20px', height: '20px') %>
+      <%= image_tag("ninja.png", class: "img-fluid", style: "border-radius: 5px") %>
+    </p>
   </div>
 </div>
 
-<%= link_to 'Enter', new_session_path %>
+<div class="enter-button">
+  <%= link_to 'Enter', new_session_path, class: 'btn btn-outline-secondary' %>
+</div>
