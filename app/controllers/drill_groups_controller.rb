@@ -1,4 +1,5 @@
 class DrillGroupsController < ApplicationController
+  set_tab :drill_group
   def index
     @drill_groups = DrillGroup.all
   end
