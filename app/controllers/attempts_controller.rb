@@ -1,5 +1,6 @@
 class AttemptsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user! only: [:destroy, :create]
   before_action :find_drill_group, except: [:destroy]
 
   def create
@@ -28,4 +29,6 @@ class AttemptsController < ApplicationController
   def find_drill_group
     @drill_group = DrillGroup.find params[:drill_group_id]
   end
+
+
 end

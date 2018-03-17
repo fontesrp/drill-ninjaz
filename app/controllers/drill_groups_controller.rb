@@ -1,4 +1,7 @@
 class DrillGroupsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_user!, only: [:destroy, :create, :edit, :update]
+
   def index
     @drill_groups = DrillGroup.all
   end
@@ -50,7 +53,15 @@ class DrillGroupsController < ApplicationController
   end
 
   private
+
   def drill_group_params
     params.require(:drill_group).permit(:name, :description, :level, :points)
+  end
+
+  def authorize_user!
+    unless can?(:manage, @drill_group)
+      flash[:alert] = 'Access Denied!'
+      redirect_to drill_group_path(@attempt.drill_group)
+    end
   end
 end

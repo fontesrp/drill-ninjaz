@@ -22,7 +22,7 @@ class Ability
     end
 
 
-      if user.admin?
+      if user.is_admin?
         can :manage, :all
       else
         can :read, :all
