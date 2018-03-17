@@ -14,7 +14,7 @@
       <%= form_tag controller: 'questions', action: 'answer', method: 'post' do %>
         <div class="form-group">
           <%= label_tag :answer, 'Your Answer:' %>
-          <%= text_area_tag :answer, '', class: 'form-control' %>
+          <%= text_area_tag :answer, '', class: 'form-control', id: 'user-answer' %>
         </div>
         <% unless @correct_answer == true %>
           <%= submit_tag 'Submit' %>
@@ -54,3 +54,12 @@
     <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question) %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+
+  const onload = function () {
+    document.getElementById("user-answer").value = "<%= @user_answer %>";
+  };
+
+  document.addEventListener("DOMContentLoaded", onload);
+</script>
