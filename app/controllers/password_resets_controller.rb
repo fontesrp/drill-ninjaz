@@ -1,12 +1,12 @@
 class PasswordResetsController < ApplicationController
-  before_action :authenticate_user!
+
 
   def edit
-    @user = current_user
+    @user = User.find params[:email]
   end
 
   def update
-    @user = current_user
+    @user =  User.find params[:email]
     if @user&.authenticate(@user.password)
 
       if @user.update(password: password_params[:password],
