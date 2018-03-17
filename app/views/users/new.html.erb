@@ -1,13 +1,54 @@
-<h2> Create An Account </h2>
+<hr>
+<div class="container-fluid">
+  <h2>Create An Account</h2>
 
-<%= simple_form_for @user do |f| %>
+  <%= form_for @user do |f| %>
+  <div class="form-input form-group">
+    <div class="label">
+      <%= f.label :first_name %>
+    </div>
+    <div class="form">
+      <%= f.text_field :first_name, class: 'form-control input-lg' %>
+    </div>
+  </div>
 
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+  <div class="form-input form-group">
+    <div class="label">
+      <%= f.label :last_name %>
+    </div>
+    <div class="form">
+      <%= f.text_field :last_name, class: 'form-control input-lg' %>
+    </div>
+  </div>
 
-  <%= f.submit "Create Account", class: "btn btn-primary" %>
+  <div class="form-input form-group">
+    <div class="label">
+      <%= f.label :email %>
+    </div>
+    <div class="form">
+      <%= f.email_field :email, class: 'form-control input-lg' %>
+    </div>
+  </div>
 
+  <div class="form-input form-group">
+    <div class="label">
+      <%= f.label :password %>
+    </div>
+    <div class="form">
+      <%= f.password_field :password, class: 'form-control input-lg' %>
+    </div>
+  </div>
+
+  <div class="form-input form-group">
+    <div class="label">
+      <%= f.label :password_confirmation %>
+    </div>
+    <div class="form">
+      <%= f.password_field :password_confirmation, class: 'form-control input-lg' %>
+    </div>
+  </div>
+  <div class="container form-group">
+    <%= f.submit class: 'btn-lg btn-block'%>
+  </div>
 <% end %>
+</div>
