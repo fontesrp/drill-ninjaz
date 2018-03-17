@@ -39,6 +39,7 @@ gem 'cancancan'
 gem 'simple_form'
 gem 'letter_opener'
 gem 'cocoon'
+gem 'faker'
 
 
 group :development, :test do
