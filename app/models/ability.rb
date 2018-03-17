@@ -9,11 +9,24 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+    can :create, Attempt do |attempt|
+      attempt.user == user
+    end
+
+    can :destroy, Attempt do |attempt|
+      attempt.user == user
+    end
+
+    can :edit, Attempt do |attempt|
+      attempt.user == user
+    end
+
+
+      if user.admin?
+        can :manage, :all
+      else
+        can :read, :all
+      end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
