@@ -28,3 +28,11 @@
 .enter-button {
   text-align: center;
 }
+
+.radio > *:not(:last-child) {
+  margin-right: 70px;
+}
+
+.collection_radio_buttons {
+  margin-left: 10px;
+}
