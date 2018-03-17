@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317030947) do
+ActiveRecord::Schema.define(version: 20180317051741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attempts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "drill_group_id"
+    t.float "score"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drill_group_id"], name: "index_attempts_on_drill_group_id"
+    t.index ["question_id"], name: "index_attempts_on_question_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
 
   create_table "drill_groups", force: :cascade do |t|
     t.string "name"
@@ -26,33 +38,12 @@ ActiveRecord::Schema.define(version: 20180317030947) do
     t.index ["user_id"], name: "index_drill_groups_on_user_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "drill_group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["drill_group_id"], name: "index_favorites_on_drill_group_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
   create_table "questions", force: :cascade do |t|
     t.text "description"
     t.bigint "drill_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["drill_group_id"], name: "index_questions_on_drill_group_id"
-  end
-
-  create_table "scores", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "drill_group_id"
-    t.integer "times_taken"
-    t.float "latest"
-    t.float "highest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["drill_group_id"], name: "index_scores_on_drill_group_id"
-    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "solutions", force: :cascade do |t|
@@ -74,11 +65,10 @@ ActiveRecord::Schema.define(version: 20180317030947) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "attempts", "drill_groups"
+  add_foreign_key "attempts", "questions"
+  add_foreign_key "attempts", "users"
   add_foreign_key "drill_groups", "users"
-  add_foreign_key "favorites", "drill_groups"
-  add_foreign_key "favorites", "users"
   add_foreign_key "questions", "drill_groups"
-  add_foreign_key "scores", "drill_groups"
-  add_foreign_key "scores", "users"
   add_foreign_key "solutions", "questions"
 end
