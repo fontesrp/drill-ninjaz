@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # TODO: Remove when user authorization/authentication is set up
   # private
   #
-  # def current_user
-  #   @current_user ||= User.find 1
-  # end
+  def current_user
+    @current_user ||= User.find 3
+  end
 end

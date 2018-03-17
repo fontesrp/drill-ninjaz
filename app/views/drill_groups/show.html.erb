@@ -22,8 +22,8 @@
         <p>Drill: <%= question.description %></p>
       </div>
       <div class="col-4">
-        <%= link_to 'Edit', edit_drill_group_question_path(question) %>
-        <%= link_to 'Delete', drill_group_question_path(question), method: :delete %>
+        <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question) %>
+        <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete %>
       </div>
     </div>
   <% end %>
@@ -31,17 +31,5 @@
 
 <div class="container">
   <h5>Add New Drill</h5>
-  <%= simple_form_for [@drill_group, @question] do |q| %>
-    <%= q.input :description %>
-
-    <%= q.simple_fields_for :solutions do |sol| %>
-      <%= render 'solution_fields', f: sol %>
-    <% end %>
-
-    <div class="links">
-      <%= link_to_add_association 'Add Another Solution', q, :solutions %>
-    </div>
-
-    <%= q.submit 'Save Drill' %>
-  <% end %>
+  <%= render 'questions/form' %>
 </div>
