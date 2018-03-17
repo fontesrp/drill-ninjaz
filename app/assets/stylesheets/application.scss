@@ -28,3 +28,18 @@
 .enter-button {
   text-align: center;
 }
+
+.radio > *:not(:last-child) {
+  margin-right: 70px;
+}
+
+.collection_radio_buttons {
+  margin-left: 10px;
+}
+
+.drill-question {
+  border: 4px lightskyblue solid;
+  margin-bottom: 7px;
+  padding: 10px 0 10px 0;
+  border-radius: 5px;
+}
