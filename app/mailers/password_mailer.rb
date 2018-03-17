@@ -1,5 +1,5 @@
 class PasswordMailer < ApplicationMailer
-  def reset_user_password
+  def reset_user_password(user)
     @user = user
 
     mail(
