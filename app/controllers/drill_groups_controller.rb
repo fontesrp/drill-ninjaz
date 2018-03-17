@@ -4,6 +4,7 @@ class DrillGroupsController < ApplicationController
 
   def show
     @drill_group = DrillGroup.find params.require(:id)
+    @question = Question.new
   end
 
   def new
@@ -19,6 +20,8 @@ class DrillGroupsController < ApplicationController
     else
       render :new
     end
+
+    # TODO: test create question form (creat a questions controller)
   end
 
   def edit
