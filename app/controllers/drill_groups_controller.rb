@@ -1,5 +1,6 @@
 class DrillGroupsController < ApplicationController
   def index
+    @drill_groups = DrillGroup.all
   end
 
   def show
@@ -25,12 +26,27 @@ class DrillGroupsController < ApplicationController
   end
 
   def edit
+    @drill_group = DrillGroup.find params.require(:id)
   end
 
   def update
+    @drill_group = DrillGroup.find params.require(:id)
+
+    if @drill_group.update drill_group_params
+      redirect_to drill_group_path(@drill_group)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @drill_group = DrillGroup.find params.require(:id)
+    if @drill_group.destroy
+      redirect_to drill_groups_path
+    else
+      flash.now[:alert] = 'Cannot delete'
+      render :index
+    end
   end
 
   private
