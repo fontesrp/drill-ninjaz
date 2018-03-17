@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  drill_group: one
+  times_taken: 1
+  latest: 1.5
+  highest: 1.5
+
+two:
+  user: two
+  drill_group: two
+  times_taken: 1
+  latest: 1.5
+  highest: 1.5
