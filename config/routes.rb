@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :password_resets, only: [:edit, :update]
+
   resources :attempts
   resource :session, only: [:new, :create, :destroy]
 
@@ -10,4 +13,7 @@ Rails.application.routes.draw do
   end
 
   get('/', { to: 'home#index', as: :root })
+  get('/sign_up/thanks', { to: 'users#thanks' })
+  get('/forgot_password', {to: 'password_resets#forgot_password'})
+
 end
