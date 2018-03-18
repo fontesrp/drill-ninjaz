@@ -119,13 +119,28 @@ class QuestionsController < ApplicationController
     false
   end
 
+  def escape_code(code)
+
+    escaped = code.strip;
+
+    # remove trailing spaces and identation
+    escaped.gsub!(/(( |\t)+(?=\n))|(^( |\t)+)/, '')
+
+    # compress spaces
+    escaped.gsub!(/( |\t)+/, ' ')
+
+    escaped
+  end
+
   def is_correct_regexp?(user_answer)
 
-    answer = user_answer.strip
+    answer = escape_code user_answer
 
     @question.solutions.each do |solution|
 
-      sol_rgx = Regexp.new "^#{solution.answer}$", Regexp::IGNORECASE
+      sol = escape_code solution.answer
+
+      sol_rgx = Regexp.new "^#{Regexp.escape sol}$", Regexp::IGNORECASE
 
       if sol_rgx =~ answer
         return true
