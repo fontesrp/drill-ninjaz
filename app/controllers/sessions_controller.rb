@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
       flash[:notice] = "Thank you for signing in! Get drilling!"
-      redirect_to drill_groups_path
+      redirect_to drill_group_tabs_path(user)
     else
       flash[:alert] = 'Wrong email or password'
       render :new
