@@ -36,7 +36,7 @@
     </div>
 
     <div class="card">
-      <div class="card-header" id="headingTwo">
+      <div class="card-header" id="#edit-info">
         <h5 class="mb-0">
           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#edit-info" aria-expanded="false" aria-controls="edit-info">
             Edit Information
@@ -45,7 +45,13 @@
       </div>
       <div id="edit-info" class="collapse" aria-labelledby="edit-info" data-parent="#accordion">
         <div class="card-body">
+          <%= simple_form_for @user do |f| %>
+            <%= f.input :first_name, required: false %>
+            <%= f.input :last_name, required: false %>
+            <%= f.input :email, required: false %>
 
+            <%= f.submit 'Update Information', method: 'PATCH', class: 'btn btn-secondary' %>
+          <% end %>
         </div>
       </div>
     </div>
