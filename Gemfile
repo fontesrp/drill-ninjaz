@@ -40,6 +40,7 @@ gem 'simple_form'
 gem 'letter_opener'
 gem 'cocoon'
 gem 'faker'
+gem 'cowsay'
 
 
 group :development, :test do
