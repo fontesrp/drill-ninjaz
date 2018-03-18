@@ -13,7 +13,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery3
+//= require jquery.turbolinks
 //= require cocoon
 //= require popper
 //= require bootstrap
+//= require masonry/jquery.masonry
+//= require masonry/jquery.event-drag
+//= require masonry/jquery.imagesloaded.min
+//= require masonry/jquery.infinitescroll.min
+//= require masonry/modernizr-transitions
+//= require isotope/jquery.isotope
 //= require_tree .
