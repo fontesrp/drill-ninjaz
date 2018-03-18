@@ -99,37 +99,50 @@ class QuestionsController < ApplicationController
     @question = Question.find params.require :id
   end
 
-  def is_correct_rspec?(user_answer)
-
-    begin
-      answer = eval(user_answer.strip)
-    rescue Exception => exc
-      return false
-    end
-
-    @question.solutions.each do |solution|
-
-      begin
-        expect(eval(solution.answer)).to eq(answer)
-        return true
-      rescue Exception => exc
-      end
-    end
-
-    false
-  end
-
   def escape_code(code)
 
     escaped = code.strip;
 
     # remove trailing spaces and identation
-    escaped.gsub!(/(( |\t)+(?=\n))|(^( |\t)+)/, '')
+    escaped.gsub!(/([ \t]+(?=([\r\n]|$)))|(^[ \t]+)/, '')
+
+    # remove empty lines and carriage returns
+    escaped.gsub!(/[\r\n]+/, "\n")
 
     # compress spaces
-    escaped.gsub!(/( |\t)+/, ' ')
+    escaped.gsub!(/[ \t]+/, ' ')
 
     escaped
+  end
+
+  def is_correct_rspec?(user_answer)
+
+    answer = escape_code user_answer
+
+    valid_format = /^def \w+(\(.*\))?\n(.|\n)*\nend$/
+
+    unless valid_format =~ answer
+      @error = 'invalid format, please wrap your code in a method'
+      return false
+    end
+
+    begin
+      user_method = eval(answer)
+    rescue Exception => exc
+      @error = "sintax error: #{exc.message}"
+      return false
+    end
+
+    @question.solutions.each do |solution|
+      begin
+        expect(send(user_method, solution.input).to_s).to eq(solution.output)
+      rescue Exception => exc
+        @error =  "input: \"#{solution.input}\"#{exc.message}"
+        return false
+      end
+    end
+
+    true
   end
 
   def is_correct_regexp?(user_answer)
@@ -151,7 +164,11 @@ class QuestionsController < ApplicationController
   end
 
   def is_correct?(user_answer)
-    is_correct_regexp?(user_answer) || is_correct_rspec?(user_answer)
+    if @question.language == 'ruby'
+      is_correct_rspec? user_answer
+    else
+      is_correct_regexp? user_answer
+    end
   end
 
   def find_next_question
