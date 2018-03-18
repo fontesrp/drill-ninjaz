@@ -28,9 +28,10 @@ class UsersController < ApplicationController
     @my_drill_groups = @user&.drill_group_attempts&.uniq
   end
 
-def forgot_password
 
-end
+  def forgot_password
+    
+  end
 
   private
 
