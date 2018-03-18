@@ -37,7 +37,7 @@
             <span>Hello
               <%= current_user.first_name %>,</span>
 
-            <%= link_to 'Profile', '#' %>
+            <%= link_to 'Profile', user_path(current_user) %>
             |
             <%= link_to 'Logout', session_path, method: :delete %>
           </div>
