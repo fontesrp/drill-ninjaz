@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
 
     first_question = @drill_group.questions.order(:id).first
 
-    # Search for Attempt added as favorite
+    # Search for Attempt added as favorite.
     attempt = Attempt.find_by user: current_user, drill_group: @drill_group, current_question_id: nil, score: nil
 
     if attempt.present?
