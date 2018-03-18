@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   resources :users
   resources :password_resets, only: [:edit, :update]
+  resources :account_activations, only: [:edit]
 
   resources :attempts
   resource :session, only: [:new, :create, :destroy]
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :drill_groups do

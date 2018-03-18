@@ -19,7 +19,9 @@ super_user = User.create(
   last_name: 'Nardo',
   email: 'leo@ninja.com',
   password: PASSWORD,
-  is_admin: true
+  is_admin: true,
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 second_admin = User.create(
@@ -40,6 +42,8 @@ second_admin = User.create(
     last_name: last_name,
     email: "#{first_name}.#{last_name}-#{num}@ninja.com",
     password: 'supersecret',
+    activated: true,
+    activated_at: Time.zone.now
   )
 end
 
