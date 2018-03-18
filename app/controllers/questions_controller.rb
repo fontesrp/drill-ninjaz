@@ -97,8 +97,13 @@ class QuestionsController < ApplicationController
 
   def is_correct?(user_answer)
 
+    answer = user_answer.strip
+
     @question.solutions.each do |solution|
-      if solution.answer == user_answer
+
+      sol_rgx = Regexp.new "^#{solution.answer}$", Regexp::IGNORECASE
+
+      if sol_rgx =~ answer
         return true
       end
     end
