@@ -120,6 +120,13 @@ font-weight: bold;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.get-drilling {
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 50px;
+}
+
 .radio > *:not(:last-child) {
   margin-right: 70px;
 }
