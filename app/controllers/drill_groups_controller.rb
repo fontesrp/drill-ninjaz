@@ -1,7 +1,8 @@
 class DrillGroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drill_group, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user!, only: [:destroy, :create, :edit, :update]
+  before_action :authorize_user!, only: [:destroy, :edit, :update]
+  # before_action :authorize_user!, except: [:show]
 
   def index
     @user = current_user
@@ -20,10 +21,15 @@ class DrillGroupsController < ApplicationController
     @drill_group = DrillGroup.new drill_group_params
     @drill_group.user = current_user
 
-    if @drill_group.save
-      redirect_to drill_group_path(@drill_group)
+    if @drill_group.user.is_admin?
+      if @drill_group.save
+        redirect_to drill_group_path(@drill_group)
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:alert] = 'Must be admin'
+      redirect_to drill_group_tabs_path(current_user)
     end
 
     # TODO: test create question form (creat a questions controller)
@@ -59,7 +65,7 @@ class DrillGroupsController < ApplicationController
   end
 
   def authorize_user!
-    unless can?(:manage, @drill_group)
+    unless can?(:crud, @drill_group)
       flash[:alert] = 'Access Denied!'
       redirect_to drill_groups_path
     end

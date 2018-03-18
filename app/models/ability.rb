@@ -19,7 +19,7 @@ class Ability
       end
 
       can :crud, Question do |question|
-        question.users == user
+        question.drill_group&.user == user
       end
 
       can :crud, Solution do |solution|

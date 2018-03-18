@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 
   before_action :find_drill_group
   before_action :find_question, only: [:edit, :update, :destroy, :show, :answer, :next]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
   before_action :find_next_question, only: [:show, :answer, :next]
 
   def create
@@ -9,10 +10,12 @@ class QuestionsController < ApplicationController
     @question = Question.new question_params
     @question.drill_group = @drill_group
 
-    if @question.save
-      redirect_to @drill_group
-    else
-      render 'drill_group/show'
+    if @question.drill_group.user.is_admin?
+      if @question.save
+        redirect_to @drill_group
+      else
+        render 'drill_group/show'
+      end
     end
   end
 
@@ -86,6 +89,13 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit :description, solutions_attributes: [:id, :answer, :_destroy]
+  end
+
+  def authorize_user!
+    unless can?(:crud, @question)
+      flash[:alert] = 'Access Denied!'
+      redirect_to drill_group_path(@drill_group)
+    end
   end
 
   def find_drill_group
