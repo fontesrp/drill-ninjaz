@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1><%= @drill_group.name %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><%= @question.description %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form_tag controller: 'questions', action: 'answer', method: 'post' do %>
+        <div class="form-group">
+          <%= label_tag :answer, 'Your Answer:' %>
+          <%= text_area_tag :answer, '', class: 'form-control', id: 'user-answer' %>
+        </div>
+        <% unless @correct_answer == true %>
+          <%= submit_tag 'Submit' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <% unless @correct_answer.nil? %>
+        <h3><%= (@correct_answer == true) ? 'Correct' : 'Incorrect' %></h3>
+      <% end %>
+    </div>
+  </div>
+  <% if @correct_answer == true %>
+    <div class="row">
+      <div class="col-12">
+        <p>Correct Answers:</p>
+      </div>
+    </div>
+    <% @question.solutions.each do |solution| %>
+      <div class="row">
+        <div class="col-12">
+          <p><%= solution.answer %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @next_question.present? %>
+    <% link_text = (@correct_answer == true) ? 'Next Drill' : 'Skip' %>
+    <%= link_to link_text, drill_group_question_next_path(@drill_group, @next_question) %>
+  <% else %>
+    <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question) %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+
+  const onload = function () {
+    document.getElementById("user-answer").value = "<%= @user_answer %>";
+  };
+
+  document.addEventListener("DOMContentLoaded", onload);
+</script>

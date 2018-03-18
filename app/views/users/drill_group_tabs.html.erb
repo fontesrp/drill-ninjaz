@@ -19,8 +19,7 @@
                 <h5 class="card-title"><%= drill.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
                 <p class="card-text"><%= drill.description %></p>
-              
-
+                <%= link_to "Start", { :controller => :transactions, :action => :purchase }, { class: "btn btn-primary btn-lg", style: "width: 100%;" } %>
                 <a href="#" class="card-link">Start </a>
                 <a href="#" class="card-link">Delete</a>
               </div>
