@@ -19,7 +19,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user. User.find params[:id]
+    @user = User.find params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+
+    if @user.update user_params
+      flash[:notice] = 'Successfully updated!'
+      redirect_to drill_group_tabs_path(@user)
+    else
+      flash[:alert] = 'Cannot update information'
+      redirect_to user_path(@user)
+    end
   end
 
   def drill_group_tabs
