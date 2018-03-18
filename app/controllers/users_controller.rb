@@ -22,8 +22,10 @@ class UsersController < ApplicationController
     @user. User.find params[:id]
   end
 
-  def my_drill_groups
-    
+  def drill_group_tabs
+    @user = current_user
+    @all_drill_groups = DrillGroup.all
+    @my_drill_groups = @user.drill_group_attempts.uniq
   end
 
 
