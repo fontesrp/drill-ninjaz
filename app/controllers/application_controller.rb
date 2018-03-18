@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-
-private
+  private
 
   def authenticate_user!
     redirect_to new_session_path, notice: "Please sign in" unless user_signed_in?
@@ -18,7 +17,4 @@ private
     @current_user ||= User.find_by_id session[:user_id]
   end
   helper_method :current_user
-
-
-
 end

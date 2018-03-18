@@ -1,0 +1,13 @@
+<%= simple_form_for [@drill_group, @question] do |q| %>
+  <%= q.input :description, label: 'Drill Description' %>
+
+  <%= q.simple_fields_for :solutions do |sol| %>
+    <%= render 'solution_fields', f: sol %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association 'Add Another Solution', q, :solutions, class: 'btn btn-outline-secondary' %>
+  </div>
+
+  <%= q.submit 'Save Drill', class: 'btn btn-secondary' %>
+<% end %>

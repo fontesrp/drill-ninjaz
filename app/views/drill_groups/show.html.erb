@@ -21,10 +21,9 @@
       <div class="col-10">
         <p>Drill: <%= question.description %></p>
       </div>
-
       <div class="btn-group col-2">
-        <%= link_to 'Edit', edit_drill_group_question_path(question), class: 'btn btn-outline-secondary' %>
-        <%= link_to 'Delete', drill_group_question_path(question), method: :delete, class: 'btn btn-outline-secondary' %>
+        <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
+        <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
       </div>
     </div>
   <% end %>
@@ -34,19 +33,7 @@
   <div class="card">
     <div class="card-body">
       <h5>Add New Drill</h5>
-      <%= simple_form_for [@drill_group, @question] do |q| %>
-        <%= q.input :description, label: 'Drill Description' %>
-
-        <%= q.simple_fields_for :solutions do |sol| %>
-          <%= render 'solution_fields', f: sol %>
-        <% end %>
-
-        <div class="links">
-          <%= link_to_add_association 'Add Another Solution', q, :solutions, class: 'btn btn-outline-secondary' %>
-        </div>
-
-        <%= q.submit 'Save Drill', class: 'btn btn-secondary' %>
-      <% end %>
+      <%= render 'questions/form' %>
     </div>
   </div>
 </div>
