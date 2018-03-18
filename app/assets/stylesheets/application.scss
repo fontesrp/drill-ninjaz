@@ -144,12 +144,14 @@ font-weight: bold;
 }
 
 #user-points {
+  display: grid;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   padding: .5rem .75rem;
-  width: fit-content;
+  width: 12em;
+  height: 15em;
   margin: 0 auto;
-  background-color: lightgrey;
+  background-color: #b8daff;
 }
 
 .flash-message {

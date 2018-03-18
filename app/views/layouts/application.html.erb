@@ -41,11 +41,6 @@
             |
             <%= link_to 'Logout', session_path, method: :delete %>
           </div>
-        <% else %>
-          <%= link_to 'Sign In', new_session_path %>
-          |
-          <%= link_to 'Sign Up', new_user_path %>
-          |
         <% end %>
       </nav>
     <% end %>
