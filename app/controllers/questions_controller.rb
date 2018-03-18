@@ -99,7 +99,7 @@ class QuestionsController < ApplicationController
     @question = Question.find params.require :id
   end
 
-  def is_correct?(user_answer)
+  def is_correct_rspec?(user_answer)
 
     begin
       answer = eval(user_answer.strip)
@@ -117,6 +117,26 @@ class QuestionsController < ApplicationController
     end
 
     false
+  end
+
+  def is_correct_regexp?(user_answer)
+
+    answer = user_answer.strip
+
+    @question.solutions.each do |solution|
+
+      sol_rgx = Regexp.new "^#{solution.answer}$", Regexp::IGNORECASE
+
+      if sol_rgx =~ answer
+        return true
+      end
+    end
+
+    false
+  end
+
+  def is_correct?(user_answer)
+    is_correct_regexp?(user_answer) || is_correct_rspec?(user_answer)
   end
 
   def find_next_question
