@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       redirect_to drill_group_tabs_path(@user)
     else
       flash[:alert] = 'Cannot update information'
-      render :show
+      redirect_to user_path(@user)
     end
   end
 
