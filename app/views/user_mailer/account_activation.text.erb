@@ -1,0 +1,7 @@
+User#account_activation
+
+Hi <%= @user.first_name %>,
+
+Welcome to Drill Ninja! Click on the link below to activate your account and get drilling:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
