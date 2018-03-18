@@ -19,12 +19,65 @@
   display: flex;
   justify-content: center;
 }
-
-.gears {
-  height: 180px;
-  width: 180px;
+@font-face {
+	font-family: 'ninja';
+	src:url('fonts/njnaruto.ttf');
+  font-weight: normal;
+	font-style: normal;
 }
 
+#title {
+  font-family: ninja;
+}
+
+#gears {
+  text-align: right;
+}
+.small-gear {
+  height: 130px;
+  width: 130px;
+  border-radius: 5px;
+  position: absolute;
+  animation-name: small-rotate;
+  animation-duration: 32s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+}
+
+.big-gear {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+  margin-left: 105px;
+  margin-top:47px;
+  animation-name: big-rotate;
+  animation-duration: 33s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.ninja-logo{
+  margin-left: 70px
+}
+@keyframes big-rotate {
+  from {
+    transform: rotate(18deg);
+  }
+
+  to {
+    transform: rotate(378deg);
+  }
+}
+
+@keyframes small-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
 .enter-button {
   text-align: center;
 }
