@@ -1,4 +1,22 @@
 <div class="drill_group_tabs">
+
+  <!-- If flash is present, it shows here. -->
+  <% if flash[:notice].present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= flash[:notice] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% elsif flash[:alert].present? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= flash[:alert] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#mydrills" role="tab">My Drills</a>
@@ -41,7 +59,7 @@
             <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title"><%= drill.name %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %> • <%= drill.points %> pts</h6>
                 <p class="card-text"><%= drill.description %></p>
                 <%= link_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link" %>
               </div>
@@ -62,4 +80,22 @@
   // $('#all_drill_groups').masonry({
   //   isAnimated: !Modernizr.csstransitions
   // });
+
+  (function () {
+
+    const tablistClick = function (evt) {
+
+      const { target } = evt;
+
+      if (!target.matches("a.nav-link[role='tab']:not(.active)")) {
+        return;
+      }
+
+      setTimeout(function () {
+        target.click();
+      }, 50);
+    };
+
+    document.querySelector("ul.nav.nav-tabs[role='tablist']").addEventListener("click", tablistClick);
+  }());
 </script>
