@@ -10,11 +10,27 @@
 
   <body>
     <% if !@hide_navbar %>
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light ">
+        <div id="ninja-nav" class="col-1">
+          <%= image_tag(
+          "ninja.png",
+          style: "height: 45px; margin-left: 30px"
+          ) %>
+        <div style="margin-left:0px">Drill Ninja</div>
+        </div>
+        <div class="col">
+          <%= link_to 'Drillz', '#' %>
+          |
+          <%= link_to 'Leaderboard', '#' %>
+        </div>
         <% if user_signed_in? %>
-          <span>Hello, <%= current_user.first_name %>!</span>
+        <div class="col" style="text-align: right">
+          <span>Hello <%= current_user.first_name %>,</span>
+
+        <%= link_to 'Profile', '#' %>
         |
-        <%= link_to 'Sign Out', session_path, method: :delete %>
+        <%= link_to 'Logout', session_path, method: :delete %>
+        </div>
           <% else %>
           <%= link_to 'Sign In', new_session_path %>
           |

@@ -26,6 +26,15 @@
 	font-style: normal;
 }
 
+.navbar {
+  font-family:  sans-serif;
+  background-color: lightskyblue;
+  
+}
+#ninja-nav {
+  font-family: ninja;
+}
+
 #title {
   font-family: ninja;
 }
@@ -39,7 +48,7 @@
   border-radius: 5px;
   position: absolute;
   animation-name: small-rotate;
-  animation-duration: 32s;
+  animation-duration: 33s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: reverse;
@@ -78,8 +87,7 @@
     transform: rotate(360deg);
   }
 }
-
-.enter-button, .center-text {
+.enter-button {
   text-align: center;
 }
 
