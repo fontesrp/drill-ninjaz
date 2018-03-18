@@ -24,6 +24,10 @@
 @import "main";
 @import "users";
 
+body {
+  background-image: url(pow-star.png);
+}
+
 .home-page > * {
   display: flex;
   justify-content: center;
@@ -226,4 +230,20 @@ font-weight: bold;
       -ms-transition-property: none;
        -o-transition-property: none;
           transition-property: none;
+}
+
+.flash-message {
+  padding: 8px;
+  color: darkolivegreen;
+  background-color: palegreen;
+  border-radius: 5px;
+}
+
+.has-error .help-block {
+  color: red;
+
+}
+
+.profile-headers {
+  color: black;
 }
