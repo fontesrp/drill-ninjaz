@@ -9,7 +9,9 @@
   </ul>
 
   <div class="tab-content">
+
     <div class="tab-pane show active" id="mydrills" role="tabpanel">
+     <% if @my_drill_groups %>
       <div id="my_drill_groups" class="tab-pane tabs-container transitions-enabled infinite-scroll clearfix masonry">
         <% @my_drill_groups.each do |drill|  %>
           <div class="m-2 box">
@@ -22,9 +24,16 @@
                 <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link" %>
               </div>
             </div>
+          <% end  %>
+        </div>
+      <% else %>
+          <div class="no-drill-groups">
+            <h1 class="get-drilling">Get drilling!</h1>
           </div>
+
         <% end  %>
       </div>
+
     </div>
 
     <div class="tab-pane" id="alldrills" role="tabpanel">

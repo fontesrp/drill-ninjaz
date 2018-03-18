@@ -41,6 +41,7 @@ body {
 .navbar {
   font-family:  sans-serif;
   background-color: lightskyblue;
+  font-size: 1.5em;
 }
 .text {
 font-size: 18px;
@@ -129,6 +130,13 @@ font-weight: bold;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.get-drilling {
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 50px;
+}
+
 .radio > *:not(:last-child) {
   margin-right: 70px;
 }
@@ -152,6 +160,7 @@ font-weight: bold;
   margin: 0 auto;
   background-color: lightgrey;
 }
+
 
 #masonry-container {
   background: #FFF;
@@ -211,4 +220,15 @@ font-weight: bold;
       -ms-transition-property: none;
        -o-transition-property: none;
           transition-property: none;
+
+.flash-message {
+  padding: 8px;
+  color: darkolivegreen;
+  background-color: palegreen;
+  border-radius: 5px;
+}
+
+.has-error .help-block {
+  color: red;
+
 }
