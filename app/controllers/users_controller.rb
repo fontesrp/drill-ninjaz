@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       # session[:user_id] = @user.id
       UserMailer.account_activation(@user).deliver_now
       flash[:notice] = "Please check your email to activate your account."
-      redirect_to drill_group_tabs_path(@user)
+      redirect_to root_path
     else
       render :new
     end
