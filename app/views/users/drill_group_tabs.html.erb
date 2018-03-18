@@ -4,17 +4,16 @@
       <a class="nav-link active" data-toggle="tab" href="#mydrills" role="tab">My Drills</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#AllDrills" role="tab">All Drills</a>
+      <a class="nav-link" data-toggle="tab" href="#alldrills" role="tab">All Drills</a>
     </li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane active drill-tabs" id="mydrills" role="tabpanel">
-
-      <div id="masonry-container" class="tabs-container transitions-enabled infinite-scroll clearfix">
+    <div class="tab-pane show active" id="mydrills" role="tabpanel">
+      <div id="my_drill_groups" class="tab-pane tabs-container transitions-enabled infinite-scroll clearfix masonry">
         <% @my_drill_groups.each do |drill|  %>
-          <div class="m-2">
-          <div class="card" style="width: 18rem;">
+          <div class="m-2 box">
+            <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title"><%= drill.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Taken: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? 0 : drill.attempts.where(user: current_user).count %> Times</h6>
@@ -26,16 +25,13 @@
           </div>
         <% end  %>
       </div>
-
-
     </div>
 
-    <div class="tab-pane" id="AllDrills" role="tabpanel">
-
-      <div class="tabs-container">
+    <div class="tab-pane" id="alldrills" role="tabpanel">
+      <div id="all_drill_groups" class="tab-pane tabs-container transitions-enabled infinite-scroll clearfix masonry">
         <% @all_drill_groups.each do |drill|  %>
-          <div class="m-2">
-          <div class="card" style="width: 18rem;">
+          <div class="box panel panel-default">
+            <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title"><%= drill.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
@@ -46,8 +42,17 @@
           </div>
         <% end  %>
       </div>
-
-
     </div>
-
+  </div>
 </div>
+
+<script type="text/javascript">
+  $('.nav-link').on('click', function() {
+    $('#my_drill_groups, #all_drill_groups').masonry({
+      isAnimated: !Modernizr.csstransitions
+    });
+  });
+  // $('#all_drill_groups').masonry({
+  //   isAnimated: !Modernizr.csstransitions
+  // });
+</script>
