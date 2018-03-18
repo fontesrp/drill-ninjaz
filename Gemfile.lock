@@ -143,10 +143,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rspec (3.7.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -154,6 +150,14 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     ruby-graphviz (1.2.3)
@@ -225,7 +229,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-erd
-  rspec
+  rspec-rails
   sass-rails (~> 5.0)
   simple_form
   spring
