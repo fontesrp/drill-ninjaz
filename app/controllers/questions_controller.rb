@@ -1,4 +1,8 @@
+require 'rspec/expectations'
+
 class QuestionsController < ApplicationController
+
+  include RSpec::Matchers
 
   before_action :find_drill_group
   before_action :find_question, only: [:edit, :update, :destroy, :show, :answer, :next]
@@ -97,14 +101,18 @@ class QuestionsController < ApplicationController
 
   def is_correct?(user_answer)
 
-    answer = user_answer.strip
+    begin
+      answer = eval(user_answer.strip)
+    rescue Exception => exc
+      return false
+    end
 
     @question.solutions.each do |solution|
 
-      sol_rgx = Regexp.new "^#{solution.answer}$", Regexp::IGNORECASE
-
-      if sol_rgx =~ answer
+      begin
+        expect(eval(solution.answer)).to eq(answer)
         return true
+      rescue Exception => exc
       end
     end
 
