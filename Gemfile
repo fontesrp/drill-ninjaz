@@ -41,7 +41,7 @@ gem 'letter_opener'
 gem 'cocoon'
 gem 'faker'
 gem 'cowsay'
-
+gem 'masonry-rails'
 
 
 group :development, :test do

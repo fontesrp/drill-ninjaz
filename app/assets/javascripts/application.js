@@ -17,3 +17,5 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+//= require masonry/jquery.masonry
+//= require isotope/jquery.isotope
