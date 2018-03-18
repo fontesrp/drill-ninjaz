@@ -20,6 +20,6 @@ Rails.application.routes.draw do
 
   get('/', { to: 'home#index', as: :root })
   get('/sign_up/thanks', { to: 'users#thanks' })
-  get('/forgot_password', {to: 'password_resets#forgot_password'})
+  get('/forgot_password', {to: 'users#forgot_password'})
 
 end
