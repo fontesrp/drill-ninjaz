@@ -16,18 +16,14 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-9 col-md-8 col-sm-7" style="font-size:20px">
-          <!-- <div class="col-9 card-body ml-3 mt-1" style="font-size: 20px"> -->
             <%= drill_group.name %>
           </div>
-         <!-- </div> -->
 
           <div class="col-lg-3 col-md-4 col-sm-5 btn-group">
-          <!-- <div class="col-3 card-body btn-group"> -->
             <%= link_to 'View', drill_group_path(drill_group.id), class: 'btn btn-primary' %>
             <%= link_to 'Edit', edit_drill_group_path(drill_group), class: 'btn btn-outline-secondary' %>
             <%= link_to 'Delete', drill_group_path(drill_group), method: :delete, class: 'btn btn-outline-secondary' %>
           </div>
-         <!-- </div> -->
         </div>
       </div>
     </div>
