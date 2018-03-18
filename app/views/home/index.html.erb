@@ -1,9 +1,17 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container home-page">
-    <h1 class="display-3">DrillNinjaz</h1>
+    <h1 id="title" class="display-3">Drill Ninja</h1>
     <p class="lead">
-      <%= image_tag("gears.png", class: "gears", style: "border-radius 5px", width: '20px', height: '20px') %>
-      <%= image_tag("ninja.png", class: "img-fluid", style: "border-radius: 5px") %>
+<div class=" container-fluid row">
+    <div id="gears" class="container-fluid col ml-auto" >
+      <%= image_tag("small_gear.png", class: "small-gear") %>
+      <%= image_tag("big_gear.png", class: "big-gear") %>
+    </div>
+
+    <div class="container-fluid col">
+      <%= image_tag("ninja.png", class: "img-fluid ninja-logo" ) %>
+    </div>
+</div>
     </p>
   </div>
 </div>
