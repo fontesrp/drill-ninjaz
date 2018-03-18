@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @attempts = @user.attempts.order(drill_group_id: :asc)
   end
 
   def update

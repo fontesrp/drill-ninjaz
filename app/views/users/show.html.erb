@@ -21,7 +21,7 @@
                 </tr>
               </thead>
 
-              <% @user.attempts.each do |attempt| %>
+              <% @attempts.each do |attempt| %>
               <% drill_group = DrillGroup.find (attempt.drill_group_id) %>
               <tbody>
                 <tr>
