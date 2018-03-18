@@ -41,7 +41,7 @@
             <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title"><%= drill.name %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %> • <%= drill.points %> pts</h6>
                 <p class="card-text"><%= drill.description %></p>
                 <%= link_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link" %>
               </div>
