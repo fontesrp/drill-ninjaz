@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       # session[:user_id] = @user.id
-      flash[:notice] = "Thank you for Signing in"
+      UserMailer.account_activation(@user).deliver_now
+      flash[:notice] = "Please check your email to activate your account."
       redirect_to drill_group_tabs_path(@user)
     else
       render :new
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
 
 
   def forgot_password
-    
+
   end
 
   private
