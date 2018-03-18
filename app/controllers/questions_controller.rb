@@ -43,12 +43,12 @@ class QuestionsController < ApplicationController
     first_question = @drill_group.questions.order(:id).first
 
     # Search for Attempt added as favorite
-    attempt = Attempt.find_by user: current_user, drill_group: @drill_group, current_question_id: nil
+    attempt = Attempt.find_by user: current_user, drill_group: @drill_group, current_question_id: nil, score: nil
 
     if attempt.present?
       attempt.update score: 0, current_question: first_question
     else
-      Attempt.create ser: current_user, drill_group: @drill_group, score: 0, current_question: first_question
+      Attempt.create user: current_user, drill_group: @drill_group, score: 0, current_question: first_question
     end
 
     redirect_to drill_group_question_path(@drill_group, first_question)
