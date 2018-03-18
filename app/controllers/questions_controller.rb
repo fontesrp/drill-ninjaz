@@ -88,7 +88,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit :description, solutions_attributes: [:id, :answer, :_destroy]
+    params.require(:question).permit :description, :language, solutions_attributes: [:id, :answer, :input, :output, :_destroy]
   end
 
   def find_drill_group
