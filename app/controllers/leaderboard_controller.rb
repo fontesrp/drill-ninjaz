@@ -55,7 +55,7 @@ class LeaderboardController < ApplicationController
         GROUP BY
           sq1.user_id")
 
-      @current_user_points = curr[0].total_pts
+      @current_user_points = curr[0]&.total_pts
     end
   end
 end
