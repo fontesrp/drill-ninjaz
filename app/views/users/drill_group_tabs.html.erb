@@ -19,9 +19,8 @@
                 <h5 class="card-title"><%= drill.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
                 <p class="card-text"><%= drill.description %></p>
-                <%= link_to "Start", { :controller => :transactions, :action => :purchase }, { class: "btn btn-primary btn-lg", style: "width: 100%;" } %>
-                <a href="#" class="card-link">Start </a>
-                <a href="#" class="card-link">Delete</a>
+                <%= link_to "Start", drill_group_questions_start_path(drill), class: "card-link" %>
+                <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link" %>
               </div>
             </div>
           </div>
@@ -41,7 +40,7 @@
                 <h5 class="card-title"><%= drill.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
                 <p class="card-text"><%= drill.description %></p>
-                <a href="#" class="card-link">Add To My Drills </a>
+                <%= link_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link" %>
               </div>
             </div>
           </div>

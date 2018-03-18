@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   get('/', { to: 'home#index', as: :root })
   get('/sign_up/thanks', { to: 'users#thanks' })
   get('/forgot_password', {to: 'password_resets#forgot_password'})
-  get('/users/:id/drill_group_tabs', {to: 'users#drill_group_tabs'})
+  get('/users/:id/drill_group_tabs', {to: 'users#drill_group_tabs', as: :drill_group_tabs})
+  post('/attempts/:drill_id/add_to_drills', {to: 'attempts#add_to_drills', as: :add_to_drills})
 end
