@@ -11,7 +11,7 @@
   <div class="tab-content">
     <div class="tab-pane active drill-tabs" id="mydrills" role="tabpanel">
 
-      <div class="tabs-container">
+      <div id="masonry-container" class="tabs-container transitions-enabled infinite-scroll clearfix">
         <% @my_drill_groups.each do |drill|  %>
           <div class="m-2">
           <div class="card" style="width: 18rem;">

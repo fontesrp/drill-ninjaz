@@ -41,6 +41,7 @@ gem 'letter_opener'
 gem 'cocoon'
 gem 'faker'
 gem 'cowsay'
+gem 'jquery-turbolinks'
 gem 'masonry-rails'
 
 
