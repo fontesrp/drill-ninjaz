@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
 
   before_action :find_drill_group
   before_action :find_question, only: [:edit, :update, :destroy, :show, :answer, :next]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
   before_action :find_next_question, only: [:show, :answer, :next]
 
   def create
@@ -13,10 +14,12 @@ class QuestionsController < ApplicationController
     @question = Question.new question_params
     @question.drill_group = @drill_group
 
-    if @question.save
-      redirect_to @drill_group
-    else
-      render 'drill_group/show'
+    if @question.drill_group.user.is_admin?
+      if @question.save
+        redirect_to @drill_group
+      else
+        render 'drill_group/show'
+      end
     end
   end
 
@@ -66,15 +69,16 @@ class QuestionsController < ApplicationController
 
     if @correct_answer
       session[:correct_answers] ||= 0
-      session[:correct_answers] += 1
-      set_user_score(session[:correct_answers])
+      qtt = session[:correct_answers].to_i
+      qtt += 1
+      set_user_score(qtt)
+      session[:correct_answers] = qtt
     end
 
     render :show
   end
 
   def next
-
     current_attempt.update current_question: @next_question
 
     redirect_to drill_group_question_path(@drill_group, @next_question)
@@ -89,6 +93,13 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit :description, :language, solutions_attributes: [:id, :answer, :input, :output, :_destroy]
+  end
+
+  def authorize_user!
+    unless can?(:crud, @question)
+      flash[:alert] = 'Access Denied!'
+      redirect_to drill_group_path(@drill_group)
+    end
   end
 
   def find_drill_group
@@ -133,6 +144,8 @@ class QuestionsController < ApplicationController
       return false
     end
 
+    correct = false
+
     @question.solutions.each do |solution|
       begin
         expect(send(user_method, solution.input).to_s).to eq(solution.output)
@@ -159,8 +172,7 @@ class QuestionsController < ApplicationController
         return true
       end
     end
-
-    false
+    correct
   end
 
   def is_correct?(user_answer)
@@ -183,6 +195,8 @@ class QuestionsController < ApplicationController
 
     question_qtt = @drill_group.questions.count
 
-    current_attempt.update score: correct_answers / question_qtt
+    score = correct_answers.to_f / question_qtt
+
+    current_attempt.update score: score
   end
 end

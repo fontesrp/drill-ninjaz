@@ -26,6 +26,22 @@
 	font-style: normal;
 }
 
+body {
+
+}
+.navbar {
+  font-family:  sans-serif;
+  background-color: lightskyblue;
+  font-size: 1.5em;
+}
+.text {
+font-size: 18px;
+font-weight: bold;
+}
+#ninja-nav {
+  font-family: ninja;
+}
+
 #title {
   font-family: ninja;
 }
@@ -39,7 +55,7 @@
   border-radius: 5px;
   position: absolute;
   animation-name: small-rotate;
-  animation-duration: 32s;
+  animation-duration: 33s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: reverse;
@@ -78,9 +94,38 @@
     transform: rotate(360deg);
   }
 }
-
-.enter-button, .center-text {
+.enter-button {
   text-align: center;
+}
+
+
+.drill_group_tabs {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90vw;
+  height: 90vh;
+  align: center;
+}
+
+.tab-content {
+  border-bottom: 0.5px solid #e6e6e6;
+  border-left: 0.5px solid #e6e6e6;
+  border-right: 0.5px solid #e6e6e6;
+  height: 75vh;
+  overflow-y: scroll;
+
+}
+.tabs-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.get-drilling {
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 50px;
 }
 
 .radio > *:not(:last-child) {
@@ -109,4 +154,15 @@
 
 .hidden {
   display: none;
+}
+
+.flash-message {
+  padding: 8px;
+  color: darkolivegreen;
+  background-color: palegreen;
+  border-radius: 5px;
+}
+
+.has-error .help-block {
+  color: red;
 }
