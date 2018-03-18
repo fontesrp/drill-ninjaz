@@ -62,4 +62,22 @@
   // $('#all_drill_groups').masonry({
   //   isAnimated: !Modernizr.csstransitions
   // });
+
+  (function () {
+
+    const tablistClick = function (evt) {
+
+      const { target } = evt;
+
+      if (!target.matches("a.nav-link[role='tab']:not(.active)")) {
+        return;
+      }
+
+      setTimeout(function () {
+        target.click();
+      }, 50);
+    };
+
+    document.querySelector("ul.nav.nav-tabs[role='tablist']").addEventListener("click", tablistClick);
+  }());
 </script>
