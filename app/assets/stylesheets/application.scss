@@ -157,8 +157,8 @@ font-weight: bold;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   padding: .5rem .75rem;
-  width: 12em;
-  height: 15em;
+  width: 10em;
+  height: 13em;
   margin: 0 auto;
   background-color: #b8daff;
 }
@@ -226,16 +226,4 @@ font-weight: bold;
       -ms-transition-property: none;
        -o-transition-property: none;
           transition-property: none;
-}
-
-.flash-message {
-  padding: 8px;
-  color: darkolivegreen;
-  background-color: palegreen;
-  border-radius: 5px;
-}
-
-.has-error .help-block {
-  color: red;
-
 }

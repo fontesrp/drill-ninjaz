@@ -1,7 +1,16 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12">
-      <h1><strong>Leaders</strong></h1>
+      <div class="">
+        <h1><strong>Leaders</strong></h1>
+      </div>
+      <% if !user_signed_in? %>
+      <div class="d-flex justify-content-end">
+        <%= link_to 'Sign In', new_session_path %>
+        ✙
+        <%= link_to "Sign Up", new_user_path %>
+      </div>
+      <% end  %>
     </div>
   </div>
   <div class="row">
@@ -20,7 +29,7 @@
       <div  class="col-4 center-text">
         <div id="user-points" class="row justify-content-center">
           <br>
-          <h1><strong>YOU</strong></h1>
+          <h1 style="margin-left:5px;"><strong>YOU</strong></h1>
           <p><%= number_with_delimiter @current_user_points.to_i %><strong> points</strong></p>
         </div>
       </div>
