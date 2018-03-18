@@ -10,42 +10,41 @@
 
   <body>
     <% if !@hide_navbar %>
-      <nav class="navbar navbar-light ">
-        <div class="">
-          <div id="ninja-nav" class="col-1">
-            <%= image_tag( "ninja.png", style: "height: 100px; ") %>
-          </div>
-          <div style="margin-left:10px"><strong> Drill Ninja</strong></div>
+    <nav class="navbar navbar-light ">
+
+      <div  class="col-1" id="navbar-logo" style="height: 100px;">
+        <%= image_tag( "ninja.png", style: "height: 75px; ") %>
+        <div id="ninja-nav"><strong> Drill Ninja</strong></div>
+      </div>
+
+
+      <div class="col text", style="font-size: 20px">
+        <% if current_user.present? %>
+        <%= link_to 'Drillz', drill_group_tabs_path(current_user) %>
+        |
+        <% end %>
+
+        <%= link_to 'Leaderboard', leaderboard_path %>
+
+        <% if current_user&.is_admin? %>
+        |
+        <%= link_to 'My Drillz', drill_groups_path %>
+        <% end %>
+      </div>
+
+      <% if user_signed_in? %>
+      <div class="col text" style="text-align: right; font-size: 20px">
+        <span>Hello
+          <%= current_user.first_name %>,</span>
+
+          <%= link_to 'Profile', user_path(current_user) %>
+          |
+          <%= link_to 'Logout', session_path, method: :delete %>
         </div>
-
-        <div class="col text", style="font-size: 1.3em">
-          <% if current_user.present? %>
-            <%= link_to 'Drillz', drill_group_tabs_path(current_user) %>
-            |
-          <% end %>
-
-          <%= link_to 'Leaderboard', leaderboard_path %>
-
-          <% if current_user&.is_admin? %>
-            |
-            <%= link_to 'My Drillz', drill_groups_path %>
-          <% end %>
-        </div>
-
-        <% if user_signed_in? %>
-          <div class="col text" style="text-align: right; font-size: 1em">
-            <span>Hello
-              <%= current_user.first_name %>,</span>
-
-            <%= link_to 'Profile', user_path(current_user) %>
-            |
-            <%= link_to 'Logout', session_path, method: :delete %>
-          </div>
         <% end %>
       </nav>
     <% end %>
 
-    <hr>
 
     <div class="container-fluid">
       <% if flash[:notice].present? %>
