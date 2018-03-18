@@ -1,0 +1,53 @@
+<div class="drill_group_tabs">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#mydrills" role="tab">My Drills</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#AllDrills" role="tab">All Drills</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active drill-tabs" id="mydrills" role="tabpanel">
+
+      <div class="tabs-container">
+        <% @my_drill_groups.each do |drill|  %>
+          <div class="m-2">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= drill.name %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
+                <p class="card-text"><%= drill.description %></p>
+                <%= link_to "Start", drill_group_questions_start_path(drill), class: "card-link" %>
+                <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link" %>
+              </div>
+            </div>
+          </div>
+        <% end  %>
+      </div>
+
+
+    </div>
+
+    <div class="tab-pane" id="AllDrills" role="tabpanel">
+
+      <div class="tabs-container">
+        <% @all_drill_groups.each do |drill|  %>
+          <div class="m-2">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= drill.name %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %></h6>
+                <p class="card-text"><%= drill.description %></p>
+                <%= link_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link" %>
+              </div>
+            </div>
+          </div>
+        <% end  %>
+      </div>
+
+
+    </div>
+
+</div>

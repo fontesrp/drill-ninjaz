@@ -72,7 +72,6 @@ class QuestionsController < ApplicationController
   end
 
   def next
-
     current_attempt.update current_question: @next_question
 
     redirect_to drill_group_question_path(@drill_group, @next_question)

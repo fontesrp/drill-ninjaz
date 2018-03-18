@@ -9,15 +9,7 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
-    can :create, Attempt do |attempt|
-      attempt.user == user
-    end
-
-    can :destroy, Attempt do |attempt|
-      attempt.user == user
-    end
-
-    can :edit, Attempt do |attempt|
+    can :crud, Attempt do |attempt|
       attempt.user == user
     end
 
