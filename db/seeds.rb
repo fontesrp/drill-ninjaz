@@ -52,7 +52,7 @@ users = User.all
 
 15.times.each do |num|
   points = rand(10..300)
-  score = rand(10..300)
+  score = rand(0..100).to_f / 100
   level = ['beginner', 'intermediate', 'advanced'][rand(0..2)]
   d = DrillGroup.create({
     name: Faker::ProgrammingLanguage.name,
