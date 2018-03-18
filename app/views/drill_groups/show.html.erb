@@ -4,7 +4,9 @@
       <h3>Drill Group: <%= @drill_group.name %></h3>
     </div>
     <div class="col-4">
-      <%= link_to 'Edit Group', edit_drill_group_path(@drill_group), class: 'btn btn-outline-secondary' %>
+      <% if can?(:crud, @drill_group) %>
+        <%= link_to 'Edit Group', edit_drill_group_path(@drill_group), class: 'btn btn-outline-secondary' %>
+      <% end %>
     </div>
   </div>
 
@@ -22,18 +24,20 @@
         <p>Drill: <%= question.description %></p>
       </div>
       <div class="btn-group col-2">
-        <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
-        <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
+        <% if can?(:crud, question) %>
+          <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-<div class="container">
-  <div class="card">
-    <div class="card-body">
-      <h5>Add New Drill</h5>
-      <%= render 'questions/form' %>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h5>Add New Drill</h5>
+        <%= render 'questions/form' %>
+      </div>
     </div>
   </div>
-</div>

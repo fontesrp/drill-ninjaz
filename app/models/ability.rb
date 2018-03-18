@@ -13,15 +13,25 @@ class Ability
       attempt.user == user
     end
 
-    can :crud, DrillGroup do |drill_group|
-      drill_group.user == user
-    end
-    
-      if user.is_admin?
-        can :manage, :all
-      else
-        can :read, :all
+    if user.is_admin?
+      can :crud, DrillGroup do |drill_group|
+        drill_group.user == user
       end
+
+      can :crud, Question do |question|
+        question.drill_group&.user == user
+      end
+
+      can :crud, Solution do |solution|
+        solution.user == user
+      end
+    end
+
+      # if user.is_admin?
+      #   can :manage, :all
+      # else
+      #   can :read, :all
+      # end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
