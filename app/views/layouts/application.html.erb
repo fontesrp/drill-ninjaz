@@ -4,22 +4,21 @@
     <title>DrillNinjaz</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% if !@hide_navbar %>
       <nav class="navbar navbar-light ">
-        <div id="ninja-nav" class="col-1">
-          <%= image_tag(
-          "ninja.png",
-          style: "height: 45px; margin-left: 30px"
-          ) %>
-          <div style="margin-left:0px">Drill Ninja</div>
+        <div class="">
+          <div id="ninja-nav" class="col-1">
+            <%= image_tag( "ninja.png", style: "height: 100px; ") %>
+          </div>
+          <div style="margin-left:10px"><strong> Drill Ninja</strong></div>
         </div>
 
-        <div class="col text">
+        <div class="col text", style="font-size: 1.3em">
           <% if current_user.present? %>
             <%= link_to 'Drillz', drill_group_tabs_path(current_user) %>
             |
@@ -34,8 +33,9 @@
         </div>
 
         <% if user_signed_in? %>
-          <div class="col text" style="text-align: right">
-            <span>Hello <%= current_user.first_name %>,</span>
+          <div class="col text" style="text-align: right; font-size: 1em">
+            <span>Hello
+              <%= current_user.first_name %>,</span>
 
             <%= link_to 'Profile', '#' %>
             |
@@ -53,22 +53,22 @@
     <hr>
 
     <div class="container-fluid">
-     <% if flash[:notice].present? %>
-       <div class="alert alert-success alert-dismissible fade show" role="alert">
-         <%= flash[:notice] %>
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-     <% elsif flash[:alert].present? %>
-       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-         <%= flash[:alert] %>
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-     <% end %>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <% elsif flash[:alert].present? %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= flash[:alert] %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% end %>
 
-    <%= yield %>
-  </body>
-</html>
+        <%= yield %>
+      </body>
+    </html>
