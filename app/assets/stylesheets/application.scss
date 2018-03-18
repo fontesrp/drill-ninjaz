@@ -78,7 +78,8 @@
     transform: rotate(360deg);
   }
 }
-.enter-button {
+
+.enter-button, .center-text {
   text-align: center;
 }
 
@@ -95,4 +96,13 @@
   margin-bottom: 7px;
   padding: 10px 0 10px 0;
   border-radius: 5px;
+}
+
+#user-points {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  padding: .5rem .75rem;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: lightgrey;
 }
