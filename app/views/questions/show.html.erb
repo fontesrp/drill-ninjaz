@@ -49,7 +49,7 @@
 
   <% if @next_question.present? %>
     <% link_text = (@correct_answer == true) ? 'Next Drill' : 'Skip' %>
-    <%= link_to link_text, drill_group_question_next_path(@drill_group, @next_question) %>
+    <%= link_to link_text, drill_group_question_next_path(@drill_group, @question) %>
   <% else %>
     <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question) %>
   <% end %>

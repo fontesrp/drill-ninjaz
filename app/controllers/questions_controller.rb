@@ -62,8 +62,10 @@ class QuestionsController < ApplicationController
 
     if @correct_answer
       session[:correct_answers] ||= 0
-      session[:correct_answers] += 1
-      set_user_score(session[:correct_answers])
+      qtt = session[:correct_answers].to_i
+      qtt += 1
+      set_user_score(qtt)
+      session[:correct_answers] = qtt
     end
 
     render :show
@@ -97,13 +99,15 @@ class QuestionsController < ApplicationController
 
   def is_correct?(user_answer)
 
+    correct = false
+
     @question.solutions.each do |solution|
       if solution.answer == user_answer
-        return true
+        correct = true
+        break;
       end
     end
-
-    false
+    correct
   end
 
   def find_next_question
@@ -118,6 +122,8 @@ class QuestionsController < ApplicationController
 
     question_qtt = @drill_group.questions.count
 
-    current_attempt.update score: correct_answers / question_qtt
+    score = correct_answers.to_f / question_qtt
+
+    current_attempt.update score: score
   end
 end

@@ -1,5 +1,6 @@
 class DrillGroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_drill_group, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:destroy, :create, :edit, :update]
 
   def index
@@ -7,7 +8,6 @@ class DrillGroupsController < ApplicationController
   end
 
   def show
-    @drill_group = DrillGroup.find params.require(:id)
     @question = Question.new
   end
 
@@ -29,12 +29,9 @@ class DrillGroupsController < ApplicationController
   end
 
   def edit
-    @drill_group = DrillGroup.find params.require(:id)
   end
 
   def update
-    @drill_group = DrillGroup.find params.require(:id)
-
     if @drill_group.update drill_group_params
       redirect_to drill_group_path(@drill_group)
     else
@@ -43,7 +40,6 @@ class DrillGroupsController < ApplicationController
   end
 
   def destroy
-    @drill_group = DrillGroup.find params.require(:id)
     if @drill_group.destroy
       redirect_to drill_groups_path
     else
@@ -53,6 +49,9 @@ class DrillGroupsController < ApplicationController
   end
 
   private
+  def find_drill_group
+    @drill_group = DrillGroup.find params.require(:id)
+  end
 
   def drill_group_params
     params.require(:drill_group).permit(:name, :description, :level, :points)
@@ -61,7 +60,7 @@ class DrillGroupsController < ApplicationController
   def authorize_user!
     unless can?(:manage, @drill_group)
       flash[:alert] = 'Access Denied!'
-      redirect_to drill_group_path(@attempt.drill_group)
+      redirect_to drill_group_path(@drill_group)
     end
   end
 end
