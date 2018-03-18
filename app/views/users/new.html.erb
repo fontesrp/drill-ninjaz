@@ -1,7 +1,6 @@
 <hr>
 <div class="container-fluid">
   <h2>Create An Account</h2>
-
   <%= form_for @user do |f| %>
   <div class="form-input form-group">
     <div class="label">
@@ -50,5 +49,9 @@
   <div class="form-group">
     <%= f.submit "Sign Up", class: " btn-lg submit"%>
   </div>
+  <div class="submit d-flex justify-content-end">
+    <%= link_to 'Have an account? Please, sign In', new_session_path %>
+  </div>
+
 <% end %>
 </div>

@@ -4,41 +4,66 @@
     <title>DrillNinjaz</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% if !@hide_navbar %>
       <nav class="navbar navbar-light ">
-        <div id="ninja-nav" class="col-1">
-          <%= image_tag(
-          "ninja.png",
-          style: "height: 45px; margin-left: 30px"
-          ) %>
-        <div style="margin-left:0px">Drill Ninja</div>
+        <div class="">
+          <div id="ninja-nav" class="col-1">
+            <%= image_tag( "ninja.png", style: "height: 100px; ") %>
+          </div>
+          <div style="margin-left:10px"><strong> Drill Ninja</strong></div>
         </div>
-        <div class="col text">
-          <%= link_to 'Drillz', drill_groups_path %>
-          |
-          <%= link_to 'Leaderboard', leaderboard_path %>
-        </div>
-        <% if user_signed_in? %>
-        <div class="col text" style="text-align: right">
-          <span>Hello <%= current_user.first_name %>,</span>
 
-        <%= link_to 'Profile', '#' %>
-        |
-        <%= link_to 'Logout', session_path, method: :delete %>
-        </div>
-          <% else %>
-          <%= link_to 'Sign In', new_session_path %>
-          |
-          <%= link_to 'Sign Up', new_user_path %>
-          |
+        <div class="col text", style="font-size: 1.3em">
+          <% if current_user.present? %>
+            <%= link_to 'Drillz', drill_group_tabs_path(current_user) %>
+            |
           <% end %>
+
+          <%= link_to 'Leaderboard', leaderboard_path %>
+
+          <% if current_user&.is_admin? %>
+            |
+            <%= link_to 'My Drillz', drill_groups_path %>
+          <% end %>
+        </div>
+
+        <% if user_signed_in? %>
+          <div class="col text" style="text-align: right; font-size: 1em">
+            <span>Hello
+              <%= current_user.first_name %>,</span>
+
+            <%= link_to 'Profile', user_path(current_user) %>
+            |
+            <%= link_to 'Logout', session_path, method: :delete %>
+          </div>
+        <% end %>
       </nav>
     <% end %>
-    <%= yield %>
-  </body>
-</html>
+
+    <hr>
+
+    <div class="container-fluid">
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <% elsif flash[:alert].present? %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= flash[:alert] %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </body>
+    </html>

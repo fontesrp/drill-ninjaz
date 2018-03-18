@@ -24,6 +24,14 @@ super_user = User.create(
   activated_at: Time.zone.now
 )
 
+second_admin = User.create(
+  first_name: 'Max',
+  last_name: 'Power',
+  email: 'max-power@ninja.com',
+  password: PASSWORD,
+  is_admin: true
+)
+
 10.times do |num|
   full_name = Faker::SiliconValley.character.split(' ')
   first_name = full_name[0]
@@ -59,6 +67,7 @@ users = User.all
     rand(1..10).times.each do |quest|
       q = Question.create(
         description: "This is question ##{quest + 1}",
+        language: Question::VALID_LANGUAGES.sample,
         drill_group: d
       )
 
@@ -90,3 +99,4 @@ puts Cowsay.say "Created #{Question.count} Questions", :tux
 puts Cowsay.say "Created #{Solution.count} Solutions", :cow
 puts Cowsay.say "Created #{Attempt.count} Attempts", :tux
 puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
+puts "Second admin user with #{second_admin.email} and password of #{PASSWORD}"
