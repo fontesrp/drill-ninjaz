@@ -41,7 +41,7 @@ gem 'letter_opener'
 gem 'cocoon'
 gem 'faker'
 gem 'cowsay'
-
+gem 'rspec'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
