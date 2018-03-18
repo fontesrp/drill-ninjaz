@@ -4,7 +4,8 @@ class DrillGroupsController < ApplicationController
   before_action :authorize_user!, only: [:destroy, :create, :edit, :update]
 
   def index
-    @drill_groups = DrillGroup.all
+    @user = current_user
+    @drill_groups = @user.drill_groups
   end
 
   def show
@@ -60,7 +61,7 @@ class DrillGroupsController < ApplicationController
   def authorize_user!
     unless can?(:manage, @drill_group)
       flash[:alert] = 'Access Denied!'
-      redirect_to drill_group_path(@drill_group)
+      redirect_to drill_groups_path
     end
   end
 end

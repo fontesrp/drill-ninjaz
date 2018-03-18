@@ -13,7 +13,10 @@ class Ability
       attempt.user == user
     end
 
-
+    can :crud, DrillGroup do |drill_group|
+      drill_group.user == user
+    end
+    
       if user.is_admin?
         can :manage, :all
       else
