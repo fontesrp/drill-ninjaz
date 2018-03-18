@@ -43,17 +43,28 @@ body {
 
 }
 .navbar {
-  font-family:  sans-serif;
-  background-color: lightskyblue;
-  font-size: 1.5em;
+ font-family:  sans-serif;
+ background-color: lightskyblue;
+ font-size: 1em;
 }
 .text {
-font-size: 18px;
-font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
 }
+
 #ninja-nav {
   font-family: ninja;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 75px;
+  //width: 100%;
 }
+
+#navbar-logo {
+  position:relative;
+}
+
 
 #title {
   font-family: ninja;
