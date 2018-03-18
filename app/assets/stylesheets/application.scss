@@ -150,3 +150,14 @@ font-weight: bold;
   margin: 0 auto;
   background-color: lightgrey;
 }
+
+.flash-message {
+  padding: 8px;
+  color: darkolivegreen;
+  background-color: palegreen;
+  border-radius: 5px;
+}
+
+.has-error .help-block {
+  color: red;
+}
