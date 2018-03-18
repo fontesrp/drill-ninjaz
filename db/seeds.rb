@@ -63,6 +63,7 @@ users = User.all
     rand(1..10).times.each do |quest|
       q = Question.create(
         description: "This is question ##{quest + 1}",
+        language: Question::VALID_LANGUAGES.sample,
         drill_group: d
       )
 
