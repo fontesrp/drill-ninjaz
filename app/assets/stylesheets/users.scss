@@ -1,17 +1,27 @@
 .label {
-  width: 30%;
+  display: flex;
+  justify-content: center;
 }
+
 .form {
   width: 70%;
 }
+
 .form-input {
   display: flex;
 }
+
 .submit {
   width: 35%;
   justify-content: center;
 }
 
+.sign_up_form {
+  width: 40vw;
+  justify-content: center;
+}
+
+.have-account-text {
 .sign-in-form {
   width: 40vw;
   margin: auto;

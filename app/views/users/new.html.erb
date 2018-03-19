@@ -1,57 +1,35 @@
-<hr>
-<div class="container-fluid">
-  <h2>Create An Account</h2>
+<div class="container">
+  <h2 class="label">Become a Ninja!</h2>
+
   <%= form_for @user do |f| %>
-  <div class="form-input form-group">
-    <div class="label">
-      <%= f.label :first_name %>
-    </div>
-    <div class="form">
-      <%= f.text_field :first_name, class: 'form-control input-lg' %>
-    </div>
-  </div>
 
-  <div class="form-input form-group">
-    <div class="label">
-      <%= f.label :last_name %>
+    <div class="form-group label">
+      <%= f.text_field :first_name, class: 'form-control sign_up_form', placeholder: 'First Name' %>
     </div>
-    <div class="form">
-      <%= f.text_field :last_name, class: 'form-control input-lg' %>
-    </div>
-  </div>
 
-  <div class="form-input form-group">
-    <div class="label">
-      <%= f.label :email %>
+    <div class="form-group label">
+      <%= f.text_field :last_name, class: 'form-control sign_up_form', placeholder: 'Last Name' %>
     </div>
-    <div class="form">
-      <%= f.email_field :email, class: 'form-control input-lg' %>
-    </div>
-  </div>
 
-  <div class="form-input form-group">
-    <div class="label">
-      <%= f.label :password %>
+    <div class="form-group label">
+      <%= f.email_field :email, class: 'form-control sign_up_form', placeholder: 'Email' %>
     </div>
-    <div class="form">
-      <%= f.password_field :password, class: 'form-control input-lg' %>
-    </div>
-  </div>
 
-  <div class="form-input form-group">
-    <div class="label">
-      <%= f.label :password_confirmation %>
+    <div class="form-group label">
+      <%= f.password_field :password, class: 'form-control sign_up_form', placeholder: 'Password' %>
     </div>
-    <div class="form">
-      <%= f.password_field :password_confirmation, class: 'form-control input-lg' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Sign Up", class: " btn-lg submit"%>
-  </div>
-  <div class="submit d-flex justify-content-end">
-    <%= link_to 'Have an account? Please, sign In', new_session_path %>
-  </div>
 
-<% end %>
+    <div class="form-group label">
+      <%= f.password_field :password_confirmation, class: 'form-control sign_up_form', placeholder: 'Confirm Password' %>
+    </div>
+
+    <div class="form-input justify-content-center">
+      <%= f.submit "Sign Up", class: "btn btn-outline-secondary submit", placeholder: 'Submit' %>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <%= link_to 'Already a Ninja?', new_session_path, class: 'have-account-text' %>
+    </div>
+
+  <% end %>
 </div>
