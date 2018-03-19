@@ -1,4 +1,4 @@
-# Drill Ninjas
+# Drill Ninjaz
 
 This platform is designed to test your coding skills, and keep track of your progress. Ninja masters (a.k.a. an admin users) have the ability of creating their own Drill Group, a group of coding questions with the same theme, that will that will test your programming knowledge. The Drill Groups range in difficulty and are labelled with the appropriate tag [beginner, intermediate, or advanced]. The more you code, the more you learn, and the more points you earn. See if your skills will get you a spot on the Leaderboard.
 
