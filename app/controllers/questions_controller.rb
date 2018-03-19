@@ -172,7 +172,7 @@ class QuestionsController < ApplicationController
         return true
       end
     end
-    correct
+    false
   end
 
   def is_correct?(user_answer)
