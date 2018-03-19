@@ -8,6 +8,15 @@
   display: flex;
 }
 .submit {
-  width: 70%;
-  margin-left: 30%;
+  width: 35%;
+  justify-content: center;
+}
+
+.sign-in-form {
+  width: 40vw;
+  margin: auto;
+}
+
+.sign-in-form-link {
+  color: dimgrey;
 }
