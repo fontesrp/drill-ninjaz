@@ -71,7 +71,7 @@ class QuestionsController < ApplicationController
 
   def answer
 
-    @user_answer = params.require :answer
+    @user_answer = params[:answer]
 
     @correct_answer = is_correct? @user_answer
 
