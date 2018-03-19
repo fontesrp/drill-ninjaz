@@ -1,7 +1,6 @@
 class PasswordResetsController < ApplicationController
 before_action :get_user, only: [:edit, :update]
 before_action :valid_user, only: [:edit, :update]
-before_action :check_expiration, only: [:edit, :update]
 include SessionsHelper
 
 
@@ -63,12 +62,6 @@ include SessionsHelper
     params.require(:user).permit(:password, :password_confirmation)
   end
 
-  def check_expiration
-    if @user.password_reset_expired?
-      flash[:alert] = "Password reset has expired."
-      redirect_to new_password_reset_url
-    end
-  end
 
 
 end
