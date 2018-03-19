@@ -93,8 +93,16 @@ class QuestionsController < ApplicationController
   end
 
   def finish_group
+
     session[:correct_answers] = 0
-    flash[:notice] = "Congratulations! You completed the \"#{@drill_group.name}\" drill group with a score of #{(current_attempt.score * 100).to_i}%"
+
+    score = current_attempt.score
+    if score < 0.5
+      flash[:alert] = "Sorry, you suck! You completed the \"#{@drill_group.name}\" drill group with a score of #{(score * 100).to_i}%"
+    else
+      flash[:notice] = "Congratulations! You completed the \"#{@drill_group.name}\" drill group with a score of #{(score * 100).to_i}%"
+    end
+
     redirect_to drill_group_tabs_path(current_user)
   end
 

@@ -7,7 +7,7 @@ This platform is designed to test your coding skills, and keep track of your pro
 Run the following commands in your terminal, after cloning the repo:
 
 ```
->cd drill-ninjaz
+> cd drill-ninjaz
 > bundle
 > rails db:create
 > rails db:migrate
