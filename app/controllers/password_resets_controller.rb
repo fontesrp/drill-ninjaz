@@ -36,6 +36,7 @@ include SessionsHelper
       redirect_to drill_group_tabs_path
     else
       render 'edit'
+
     end
   end
 

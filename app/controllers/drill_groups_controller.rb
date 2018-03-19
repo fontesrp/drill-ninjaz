@@ -25,6 +25,7 @@ class DrillGroupsController < ApplicationController
       if @drill_group.save
         redirect_to drill_group_path(@drill_group)
       else
+        flash.now[:alert] = @drill_group.errors.full_messages.join(', ')
         render :new
       end
     else
@@ -42,6 +43,7 @@ class DrillGroupsController < ApplicationController
     if @drill_group.update drill_group_params
       redirect_to drill_group_path(@drill_group)
     else
+      flash.now[:alert] = @drill_group.errors.full_messages.join(', ')
       render :edit
     end
   end
