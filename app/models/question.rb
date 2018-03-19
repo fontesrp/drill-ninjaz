@@ -24,7 +24,7 @@ class Question < ApplicationRecord
 
   def valid_lang
     if !VALID_LANGUAGES.include? language
-      errors.add :body,  "invalid language"
+      errors.add :language,  "invalid"
     end
   end
 end
