@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     @user = current_user
     @all_drill_groups = DrillGroup.all
     @my_drill_groups = @user&.drill_group_attempts&.uniq
+    
   end
 
 

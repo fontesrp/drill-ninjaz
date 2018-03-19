@@ -85,6 +85,14 @@ body {
   animation-direction: reverse;
 }
 
+.no-drill-groups {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  h1 {
+    font-size: 50px;
+  }
+}
 .big-gear {
   height: 150px;
   width: 150px;
@@ -179,22 +187,7 @@ body {
 }
 
 
-#masonry-container {
-  background: #FFF;
-  padding: 5px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  clear: both;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-          .box {
-              margin: 10px;
-              box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);}
-          h1, h2, h3, h4, h5, h6 {
-             font-weight: 100;
-          }
-}
+
 
 .hidden {
   display: none;

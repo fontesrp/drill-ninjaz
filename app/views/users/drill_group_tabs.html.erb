@@ -2,52 +2,52 @@
 
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#mydrills" role="tab">My Drills</a>
+      <a class="nav-link active" data-toggle="tab" href="#mydrills" role="tab" style="font-weight: bold;">My Drillz</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#alldrills" role="tab">All Drills</a>
+      <a class="nav-link" data-toggle="tab" href="#alldrills" role="tab" style="font-weight: bold;">All Drillz</a>
     </li>
   </ul>
 
   <div class="tab-content">
 
     <div class="tab-pane show active" id="mydrills" role="tabpanel">
-      <% if @my_drill_groups %>
       <div id="my_drill_groups" class="tab-pane tabs-container transitions-enabled infinite-scroll clearfix masonry">
+        <%if @my_drill_groups.length > 0 %>
         <% @my_drill_groups.each do |drill|  %>
-          <div class="m-2 box">
-            <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title"><%= drill.name %></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Taken: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? 0 : drill.attempts.where(user: current_user).count %> Times</h6>
-                <p class="card-text">Score: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? "N/A" : drill.attempts.where(user: current_user).maximum("score") %></p>
-                <%= link_to "Start", drill_group_questions_start_path(drill), class: "card-link" %>
-                <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link" %>
-              </div>
+        <div class="m-2 box">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= drill.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Taken: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? 0 : drill.attempts.where(user: current_user).count %> Times</h6>
+              <p class="card-text">Score: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? "N/A" : drill.attempts.where(user: current_user).maximum("score") %></p>
+              <%= link_to "Start", drill_group_questions_start_path(drill), class: "card-link", style: "font-weight: bold; font-size: 13px;" %>
+              <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link", style: "font-weight: bold; font-size: 13px;" %>
             </div>
           </div>
-          <% end  %>
-      <% else %>
-          <div class="no-drill-groups">
-            <h1 class="get-drilling">Get drilling!</h1>
-          </div>
-    <% end  %>
-  </div>
+        </div>
+        <% end  %>
+        <% else %>
+        <div class="no-drill-groups">
+          <h1 class="get-drilling">Get Drillin'!</h1>
+        </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="tab-pane" id="alldrills" role="tabpanel">
       <div id="all_drill_groups" class="tab-pane tabs-container transitions-enabled infinite-scroll clearfix masonry">
         <% @all_drill_groups.each do |drill|  %>
-          <div class="box panel panel-default">
-            <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title"><%= drill.name %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %> • <%= drill.points %> pts</h6>
-                <p class="card-text"><%= drill.description %></p>
-                <%= link_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link" %>
-              </div>
+        <div class="box panel panel-default">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= drill.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= drill.level %> • <%= drill.points %> pts</h6>
+              <p class="card-text"><%= drill.description %></p>
+              <%= button_to "Add To My Drills", add_to_drills_path(drill), method: :post, class: "card-link btn btn-outline-primary btn-sm" %>
             </div>
           </div>
+        </div>
         <% end  %>
       </div>
     </div>
@@ -55,30 +55,27 @@
 </div>
 
 <script type="text/javascript">
-  $('.nav-link').on('click', function() {
-    $('#my_drill_groups, #all_drill_groups').masonry({
-      isAnimated: !Modernizr.csstransitions
-    });
+$('.nav-link').on('click', function() {
+  $('#my_drill_groups, #all_drill_groups').masonry({
+    isAnimated: !Modernizr.csstransitions
   });
-  // $('#all_drill_groups').masonry({
-  //   isAnimated: !Modernizr.csstransitions
-  // });
+});
 
-  (function () {
+(function () {
 
-    const tablistClick = function (evt) {
+  const tablistClick = function (evt) {
 
-      const { target } = evt;
+    const { target } = evt;
 
-      if (!target.matches("a.nav-link[role='tab']:not(.active)")) {
-        return;
-      }
+    if (!target.matches("a.nav-link[role='tab']:not(.active)")) {
+      return;
+    }
 
-      setTimeout(function () {
-        target.click();
-      }, 50);
-    };
+    setTimeout(function () {
+      target.click();
+    }, 50);
+  };
 
-    document.querySelector("ul.nav.nav-tabs[role='tablist']").addEventListener("click", tablistClick);
-  }());
+  document.querySelector("ul.nav.nav-tabs[role='tablist']").addEventListener("click", tablistClick);
+}());
 </script>
