@@ -86,7 +86,8 @@ class QuestionsController < ApplicationController
 
   def finish_group
     session[:correct_answers] = 0
-    redirect_to root_path
+    flash[:notice] = "Congratulations! You completed the \"#{@drill_group.name}\" drill group with a score of #{(current_attempt.score * 100).to_i}%"
+    redirect_to drill_group_tabs_path(current_user)
   end
 
   private
@@ -172,7 +173,8 @@ class QuestionsController < ApplicationController
         return true
       end
     end
-    correct
+
+    false
   end
 
   def is_correct?(user_answer)
