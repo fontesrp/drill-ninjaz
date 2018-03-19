@@ -25,15 +25,17 @@
           <div class="col-10">
             <p>Drill: <%= question.description %></p>
           </div>
-        
+
           <div class="btn-group col-2 d-flex justify-content-end">
             <% if can?(:crud, question) %>
               <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
               <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
             <% end %>
           </div>
+        </div>
       </div>
-  <% end %>
+</div>
+<% end %>
 </div>
 
 

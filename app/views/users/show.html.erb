@@ -27,7 +27,7 @@
                 <tr>
                   <% if attempt.score %>
                     <td><%= drill_group.name %></td>
-                    <td><%= number_to_percentage(((attempt.score*100)/drill_group.points) * 100, precision: 0) %></td>
+                    <td><%= number_to_percentage((attempt.score*100), precision: 0) %></td>
                   <% end %>
                 </tr>
               </tbody>

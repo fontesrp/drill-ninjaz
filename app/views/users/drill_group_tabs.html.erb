@@ -20,7 +20,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= drill.name %></h5>
               <h6 class="card-subtitle mb-2 text-muted">Taken: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? 0 : drill.attempts.where(user: current_user).count %> Times</h6>
-              <p class="card-text">Score: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? "N/A" : drill.attempts.where(user: current_user).maximum("score") %></p>
+              <p class="card-text">Score: <%= drill.attempts.where(user: current_user).maximum("score") == nil ? "N/A" : number_to_percentage((drill.attempts.where(user: current_user).maximum("score")*100), precision: 0) %> </p>
               <%= link_to "Start", drill_group_questions_start_path(drill), class: "card-link", style: "font-weight: bold; font-size: 13px;" %>
               <%= link_to "Delete", attempt_path(drill.attempts.find_by user: current_user), method: :delete, class: "card-link", style: "font-weight: bold; font-size: 13px;" %>
             </div>
