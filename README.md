@@ -26,8 +26,18 @@ Run the following commands in your terminal, after cloning the repo:
  [fontesrp](https://github.com/fontesrp)
 * **Samantha Tsang**
  [smytsang](https://github.com/smytsang)
+ * Created Drill Groups controller
+ * Created and styled various forms and views (with Bootstrap)
+ * Added User Authentication/Authorization
+ 
 * **Wes Corman Fontes**
  [wcorman](https://github.com/wcorman)
+ * Account activation emailer
+ * Password Reset Emailer
+ * Created initial seeds
+ * Added some animation to the home page
+ * Added User Authentication/Authorization
+
 * **Francis Pham**
  [phongpt1989](https://github.com/phongpt1989)
 * **Allie Dukuze**
