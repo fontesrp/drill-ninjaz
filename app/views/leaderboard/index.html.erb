@@ -19,7 +19,7 @@
         <ul class="list-group">
           <li class="list-group-item list-group-item-primary d-flex justify-content-between">
             <strong><%= index + 1 %> ✦   <%= leader[:user].full_name %></strong>
-            <span><%= number_with_delimiter leader[:points].to_i %> <strong>points</strong> </span>
+            <span><strong><%= number_with_delimiter leader[:points].to_i %></strong> points</span>
           </li>
         </ul>
         <br>
@@ -30,7 +30,7 @@
         <div id="user-points" class="row justify-content-center">
           <br>
           <h1 style="margin-left:5px"><strong>YOU</strong></h1>
-          <p style="margin-left:15px"><%= number_with_delimiter @current_user_points.to_i %><strong> points</strong></p>
+          <p style="margin-left:10px"><strong><%= number_with_delimiter @current_user_points.to_i %></strong> points</p>
         </div>
       </div>
     <% end %>
