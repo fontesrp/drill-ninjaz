@@ -98,7 +98,7 @@ class QuestionsController < ApplicationController
 
     score = current_attempt.score
     if score < 0.5
-      flash[:alert] = "Sorry, you suck! You completed the \"#{@drill_group.name}\" drill group with a score of #{(score * 100).to_i}%"
+      flash[:alert] = "Better luck next time! You completed the \"#{@drill_group.name}\" drill group with a score of #{(score * 100).to_i}%"
     else
       flash[:notice] = "Congratulations! You completed the \"#{@drill_group.name}\" drill group with a score of #{(score * 100).to_i}%"
     end
