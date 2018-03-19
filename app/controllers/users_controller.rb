@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       UserMailer.account_activation(@user).deliver_now
       redirect_to sign_up_thanks_path
     else
-      flash[:alert] = @user.errors.full_messages.join(', ')
+      flash.now[:alert] = @user.errors.full_messages.join(', ')
       render :new
     end
   end

@@ -18,7 +18,8 @@ class QuestionsController < ApplicationController
       if @question.save
         redirect_to @drill_group
       else
-        render 'drill_group/show'
+        flash.now[:alert] = @question.errors.full_messages.join(', ')
+        render 'drill_groups/show'
       end
     end
   end

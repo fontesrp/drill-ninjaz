@@ -15,7 +15,7 @@ class PasswordResetsController < ApplicationController
         flash[:notice] = "Password has been reset"
         redirect_to root_path
       else
-        flash[:alert] = "Passwords do not match - try again"
+        flash.now[:alert] = "Passwords do not match - try again"
         render :edit
       end
     end
