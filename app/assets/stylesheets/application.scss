@@ -161,7 +161,7 @@ body {
 }
 
 .drill-question {
-  border: 4px lightskyblue solid;
+  border: 3px lightskyblue solid;
   margin-bottom: 7px;
   padding: 10px 0 10px 0;
   border-radius: 5px;
@@ -257,4 +257,9 @@ body {
 
 .profile-headers {
   color: black;
+}
+
+.card-opacity {
+    background-color: 'white';
+    background-color: rgba(355, 355, 355, 0.75);
 }
