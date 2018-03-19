@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+    if user_signed_in?
+      redirect_to drill_group_tabs_path(current_user)
+    end
   end
 
   def create
@@ -11,7 +14,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Thank you for signing in! Get drilling!"
       redirect_to drill_group_tabs_path(user)
     else
-      flash[:alert] = 'Wrong email or password'
+      flash.now[:alert] = 'Wrong email or password'
       render :new
     end
   end
