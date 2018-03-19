@@ -21,10 +21,10 @@
             class: 'form-control',
             id: 'user-answer',
             rows: 5,
-            placeholder: (@question.language === 'ruby') ? "Wrap your code into a method a method, like so:\ndef foo(params)\n  \# code goes here\nend" : "Write your code here"
+            placeholder: (@question.language == 'ruby') ? "Wrap your code into a method a method, like so:\ndef foo(params)\n  \# code goes here\nend" : "Write your code here"
           )%>
         </div>
-        <% unless @correct_answer == true %>
+        <% if @user_answer == "" %>
           <%= submit_tag 'Submit' %>
         <% end %>
       <% end %>
@@ -41,7 +41,7 @@
       <% end %>
     </div>
   </div>
-  <% if @correct_answer == true %>
+  <% unless @user_answer == "" %>
     <div class="row">
       <div class="col-12">
         <p>Correct Answers:</p>
@@ -61,7 +61,7 @@
   <% end %>
 
   <% if @next_question.present? %>
-    <% link_text = (@correct_answer == true) ? 'Next Drill' : 'Skip' %>
+    <% link_text = (@user_answer == "") ? 'Skip' : 'Next Drill' %>
     <%= link_to link_text, drill_group_question_next_path(@drill_group, @question) %>
   <% else %>
     <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question) %>

@@ -41,7 +41,15 @@ class QuestionsController < ApplicationController
   end
 
   def show
+
+    current_question = current_attempt.current_question
+
+    if @question != current_question
+      redirect_to drill_group_question_next_path(@drill_group, current_question)
+    end
+
     @correct_answer = nil
+    @user_answer = ''
   end
 
   def start_group
@@ -64,14 +72,13 @@ class QuestionsController < ApplicationController
 
   def answer
 
-    @user_answer = params.require :answer
+    @user_answer = params[:answer]
 
     @correct_answer = is_correct? @user_answer
 
     if @correct_answer
       session[:correct_answers] ||= 0
-      qtt = session[:correct_answers].to_i
-      qtt += 1
+      qtt = session[:correct_answers].to_i + 1
       set_user_score(qtt)
       session[:correct_answers] = qtt
     end
@@ -87,7 +94,8 @@ class QuestionsController < ApplicationController
 
   def finish_group
     session[:correct_answers] = 0
-    redirect_to root_path
+    flash[:notice] = "Congratulations! You completed the \"#{@drill_group.name}\" drill group with a score of #{(current_attempt.score * 100).to_i}%"
+    redirect_to drill_group_tabs_path(current_user)
   end
 
   private
@@ -173,6 +181,7 @@ class QuestionsController < ApplicationController
         return true
       end
     end
+
     false
   end
 
