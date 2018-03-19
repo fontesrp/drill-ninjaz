@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="">
+        <h1><strong>Leaders</strong></h1>
+      </div>
+      <% if !user_signed_in? %>
+      <div class="d-flex justify-content-end">
+        <%= link_to 'Sign In', new_session_path %>
+        ✙
+        <%= link_to "Sign Up", new_user_path %>
+      </div>
+      <% end  %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="<%= (user_signed_in?) ? 'col-8' : 'col-12' %>">
+      <% @leaders.each.with_index do |leader, index| %>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary d-flex justify-content-between">
+            <strong><%= index + 1 %> ✦   <%= leader[:user].full_name %></strong>
+            <span><strong><%= number_with_delimiter leader[:points].to_i %></strong> points / <strong><%= number_with_delimiter leader[:badges] %></strong> badges</span>
+          </li>
+        </ul>
+        <br>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <div  class="col-4 center-text">
+        <div id="user-points" class="row justify-content-center">
+          <br>
+          <h1 style="margin-left:5px"><strong>YOU</strong></h1>
+          <p style="margin-left:10px"><strong><%= number_with_delimiter @current_user_points.to_i %></strong> points <br>
+          <strong><%= number_with_delimiter @current_user_badges %></strong> badges</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

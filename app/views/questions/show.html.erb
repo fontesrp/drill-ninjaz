@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1><%= @drill_group.name %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><%= @question.description %></p>
+      <p>Language: <%= @question.language %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form_tag controller: 'questions', action: 'answer', method: 'post' do %>
+        <div class="form-group">
+          <%= label_tag :answer, 'Your Answer:' %>
+          <%= text_area_tag(
+            :answer,
+            '',
+            class: 'form-control',
+            id: 'user-answer',
+            rows: 5,
+            placeholder: (@question.language == 'ruby') ? "Wrap your code into a method a method, like so:\ndef foo(params)\n  \# code goes here\nend" : "Write your code here"
+          )%>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div>
+            <% if @user_answer == "" %>
+              <%= submit_tag 'Submit', class:"btn btn-outline-secondary" %>
+            <% end %>
+          </div>
+          <div>
+            <% if @next_question.present? %>
+              <% link_text = (@user_answer == "") ? 'Skip' : 'Next Drill' %>
+              <%= link_to link_text, drill_group_question_next_path(@drill_group, @question), class:"btn btn-outline-secondary" %>
+            <% else %>
+              <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question), class:"btn btn-outline-secondary"%>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <% unless @correct_answer.nil? %>
+        <h3><%= (@correct_answer == true) ? 'Correct' : 'Incorrect' %></h3>
+        <p><%= (@error.present?) ? @error : '' %></p>
+      <% end %>
+    </div>
+  </div>
+  <% if @correct_answer == true %>
+    <div class="row">
+      <div class="col-12">
+        <p>Correct Answers:</p>
+      </div>
+    </div>
+    <% @question.solutions.each do |solution| %>
+      <div class="row">
+        <div class="col-12">
+          <% if @question.language == 'ruby' %>
+            <p>Input: "<%= solution.input %>"; Output: "<%= solution.output %>"</p>
+          <% else %>
+            <p><%= solution.answer %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+  (function () {
+
+    const submitted = `<%= @user_answer %>`;
+    const ruby = <%= (@question.language == 'ruby') %>;
+
+    const defaultValue = (ruby)
+      ? "def foo(args)\n  # put your code here\nend"
+      : "";
+
+    document.getElementById("user-answer").value = (submitted === "")
+      ? defaultValue
+      : submitted;
+  }());
+</script>

@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <h3>Create Drill Group</h3>
+
+  <%= simple_form_for @drill_group do |f| %>
+
+  <div class="row my-3">
+    <div class="col-2">
+      <%= f.label :name %>
+    </div>
+    <div class="col-5 offset-1">
+      <%= f.input_field :name, class: 'w-100' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <%= f.label :description %>
+    </div>
+    <div class="col-5 offset-1">
+      <%= f.text_area :description, rows: '5', class: 'w-100' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <%= f.label :level %>
+    </div>
+    <div class="col-5 offset-1 radio">
+      <%= f.collection_radio_buttons :level, @drill_group.available_levels, :first, :last, class: 'w-100' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <%= f.label :points %>
+    </div>
+    <div class="col-5 offset-1">
+      <%= f.input_field :points, class: 'w-100' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 offset-3">
+      <%= f.submit 'Save', class: 'btn btn-secondary btn-lg mt-3' %>
+    </div>
+  </div>
+
+  <% end %>
+</div>

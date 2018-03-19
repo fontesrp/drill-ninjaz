@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+      <h1>Drill Groups</h1>
+    </div>
+
+    <div class="col-lg-3 col-md-4 col-sm-5 mt-2">
+      <%= link_to 'Add Group', new_drill_group_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
+
+<div class="container drill-group-index">
+  <% @drill_groups.each do |drill_group| %>
+    <div class="card card-opacity mb-3" style="max-width: 60rem">
+      <div class="card-body card-body-opacity">
+        <div class="row">
+          <div class="col-lg-9 col-md-8 col-sm-7" style="font-size:20px">
+            <%= drill_group.name %>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-5 btn-group">
+            <%= link_to 'View', drill_group_path(drill_group.id), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_drill_group_path(drill_group), class: 'btn btn-outline-secondary' %>
+            <%= link_to 'Delete', drill_group_path(drill_group), method: :delete, class: 'btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

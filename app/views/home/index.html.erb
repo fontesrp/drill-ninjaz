@@ -1,0 +1,21 @@
+<div class="jumbotron jumbotron-fluid" style="background-color: lightskyblue">
+  <div class="container home-page">
+    <h1 id="title" class="display-3">Drill Ninjaz</h1>
+    <p class="lead">
+<div class=" container-fluid row">
+    <div id="gears" class="container-fluid col ml-auto" >
+      <%= image_tag("small_gear.png", class: "small-gear") %>
+      <%= image_tag("big_gear.png", class: "big-gear") %>
+    </div>
+
+    <div class="container-fluid col">
+      <%= image_tag("ninja.png", class: "img-fluid ninja-logo" ) %>
+    </div>
+</div>
+    </p>
+  </div>
+</div>
+
+<div class="enter-button">
+  <%= link_to 'Enter', new_session_path, class: 'btn btn-outline-secondary btn-lg' %>
+</div>

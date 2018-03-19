@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-8">
+      <h3>Drill Group: <strong><%= @drill_group.name %> </strong>  (<%= @drill_group.points %> pts)</h3>
+    </div>
+    <div class="col-4 d-flex justify-content-end">
+      <% if can?(:crud, @drill_group) %>
+        <%= link_to 'Edit Group', edit_drill_group_path(@drill_group), class: 'btn btn-outline-secondary' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <strong><p><%= @drill_group.description %></p></strong>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <% @drill_group.questions.each do |question| %>
+    <div class="card card-opacity drill-question">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-10">
+            <p>Drill: <%= question.description %></p>
+          </div>
+
+          <div class="btn-group col-2 d-flex justify-content-end">
+            <% if can?(:crud, question) %>
+              <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
+              <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+</div>
+<% end %>
+</div>
+
+
+  <div class="container" >
+    <div class="card card-opacity" style="border:none">
+      <div class="card-body">
+        <h5>Add New Drill</h5>
+        <%= render 'questions/form' %>
+      </div>
+    </div>
+  </div>

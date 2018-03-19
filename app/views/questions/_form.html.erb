@@ -1,0 +1,76 @@
+<%= simple_form_for [@drill_group, @question] do |q| %>
+
+  <%= q.input :language, collection: Question::VALID_LANGUAGES %>
+  <%= q.input :description, label: 'Drill Description' %>
+
+  <%= q.simple_fields_for :solutions do |sol| %>
+    <%= render 'questions/solution_fields', f: sol, class:'' %>
+  <% end %>
+
+
+  <div class="links">
+    <hr>
+    <%= link_to_add_association 'Add Another Solution', q, :solutions, class: 'btn btn-outline-secondary', style: 'margin-bottom:10px; box-shadow: 3px 3px #000000' %>
+  </div>
+
+  <%= q.submit 'Save Drill', class: 'btn btn-secondary'%>
+<% end %>
+
+<script type="text/javascript">
+  (function () {
+
+    "use strict";
+
+    const pageForm = function () {
+
+      let form = document.getElementById("new_question");
+
+      if (form === null) {
+        form = document.querySelector("form.simple_form.edit_question");
+      }
+
+      return form;
+    };
+
+    const toggleSolutionFields = function () {
+
+      const select = document.getElementById("question_language");
+
+      const ruby = (select.value === "ruby");
+
+      const form = pageForm();
+
+      const answers = form
+        .querySelectorAll(".nested-fields > .question_solutions_answer");
+
+      const rspec = form
+        .querySelectorAll(".nested-fields > .question_solutions_input, .nested-fields > .question_solutions_output");
+
+      answers.forEach(function (node) {
+        if (ruby) {
+          node.classList.add("hidden");
+        } else {
+          node.classList.remove("hidden");
+        }
+      });
+
+      rspec.forEach(function (node) {
+        if (ruby) {
+          node.classList.remove("hidden");
+        } else {
+          node.classList.add("hidden");
+        }
+      });
+    };
+
+    const setupLanguages = function () {
+
+      document.getElementById("question_language").addEventListener("change", toggleSolutionFields);
+      pageForm().addEventListener("DOMNodeInserted", toggleSolutionFields);
+
+      toggleSolutionFields();
+    };
+
+    setupLanguages();
+  }());
+</script>
