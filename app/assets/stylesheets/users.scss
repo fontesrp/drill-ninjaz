@@ -21,7 +21,7 @@
   justify-content: center;
 }
 
-.have-account-text {
+.have-account-text {}
 .sign-in-form {
   width: 40vw;
   margin: auto;
@@ -29,4 +29,14 @@
 
 .sign-in-form-link {
   color: dimgrey;
+}
+
+.forgot_password_form {
+  width: 40vw;
+  justify-content: center;
+}
+
+.forgot_password_submit {
+  width: 20vw;
+  justify-content: end;
 }
