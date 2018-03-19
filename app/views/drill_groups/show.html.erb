@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-8">
-      <h3>Drill Group: <strong><%= @drill_group.name %></strong> </h3>
+      <h3>Drill Group: <strong><%= @drill_group.name %> </strong>  (<%= @drill_group.points %> pts)</h3>
     </div>
     <div class="col-4 d-flex justify-content-end">
       <% if can?(:crud, @drill_group) %>
