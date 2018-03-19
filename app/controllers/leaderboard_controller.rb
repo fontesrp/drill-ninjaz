@@ -30,7 +30,8 @@ class LeaderboardController < ApplicationController
     top_users.each do |usr|
       @leaders << {
         user: User.find(usr.user_id),
-        points: usr.total_pts
+        points: usr.total_pts,
+        badges: badges(usr.total_pts)
       }
     end
 
@@ -56,6 +57,17 @@ class LeaderboardController < ApplicationController
           sq1.user_id")
 
       @current_user_points = curr[0]&.total_pts
+      @current_user_badges = badges(@current_user_points)
+    end
+  end
+
+  private
+
+  def badges(score)
+    if score.nil?
+      0
+    else
+      (score / 62.5).to_i
     end
   end
 end
