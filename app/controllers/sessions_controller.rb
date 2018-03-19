@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+    if user_signed_in?
+      redirect_to drill_group_tabs_path(current_user)
+    end
   end
 
   def create
