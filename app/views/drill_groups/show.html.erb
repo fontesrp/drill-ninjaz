@@ -18,8 +18,8 @@
 </div>
 
 <div class="container">
-  <div class="card drill-question">
     <% @drill_group.questions.each do |question| %>
+    <div class="card card-opacity drill-question">
       <div class="card-body">
         <div class="row">
           <div class="col-10">
@@ -31,14 +31,14 @@
               <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
             <% end %>
           </div>
-        </div>
       </div>
-    <% end %>
+      </div>
   </div>
+  <% end %>
 </div>
 
   <div class="container">
-    <div class="card">
+    <div class="card card-opacity">
       <div class="card-body">
         <h5>Add New Drill</h5>
         <%= render 'questions/form' %>
