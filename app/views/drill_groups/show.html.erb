@@ -18,19 +18,23 @@
 </div>
 
 <div class="container">
-  <% @drill_group.questions.each do |question| %>
-    <div class="row drill-question">
-      <div class="col-10">
-        <p>Drill: <%= question.description %></p>
+  <div class="card drill-question">
+    <% @drill_group.questions.each do |question| %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-10">
+            <p>Drill: <%= question.description %></p>
+          </div>
+          <div class="btn-group col-2">
+            <% if can?(:crud, question) %>
+              <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
+              <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="btn-group col-2">
-        <% if can?(:crud, question) %>
-          <%= link_to 'Edit', edit_drill_group_question_path(@drill_group, question), class: 'btn btn-outline-secondary' %>
-          <%= link_to 'Delete', drill_group_question_path(@drill_group, question), method: :delete, class: 'btn btn-outline-secondary' %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
   <div class="container">
