@@ -1,4 +1,9 @@
 class PasswordResetsController < ApplicationController
+before_action :get_user, only: [:edit, :update]
+before_action :valid_user, only: [:edit, :update]
+before_action :check_expiration, only: [:edit, :update]
+include SessionsHelper
+
 
   def new
   end
@@ -8,7 +13,7 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:notice] = "Email sent with password reset instructions"
       redirect_to root_url
     else
       flash.now[:alert] = "Email addresss not found. Sorry."
@@ -17,31 +22,52 @@ class PasswordResetsController < ApplicationController
   end
 
 
-
   def edit
-    @user = User.find params[:email]
   end
 
   def update
-    @user =  User.find params[:email]
-    if @user&.authenticate(@user.password)
-
-      if @user.update(password: password_params[:password],
-      password_confirmation: password_params[:password_confirmation])
-
-        flash[:notice] = "Password has been reset"
-        redirect_to root_path
-      else
-        flash[:alert] = "Passwords do not match - try again"
-        render :edit
-      end
+    if params[:user][:password].empty?
+      @user.errors.add(:password, 'cant be empty')
+      render 'edit'
+    elsif @user.update_attributes(user_params)
+      log_in @user
+      @user.update_attribute( :reset_digest, nil)
+      flash[:success] = 'Password has been reset!'
+      redirect_to drill_group_tabs_path
+    else
+      render 'edit'
     end
   end
 
 
-
   private
+
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def get_user
+    @user = User.find_by(email: params[:email])
+  end
+
+  # Confirms a valid user
+  def valid_user
+    # unless (@user && @user.activated? && @user.authenticated?( :reset, params[:id]))
+    unless (@user && @user.activated?)
+      redirect_to root_path
+    end
+  end
+
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
+
+  def check_expiration
+    if @user.password_reset_expired?
+      flash[:alert] = "Password reset has expired."
+      redirect_to new_password_reset_url
+    end
+  end
+
+
 end
