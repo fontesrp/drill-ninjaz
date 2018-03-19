@@ -20,30 +20,45 @@ Run the following commands in your terminal, after cloning the repo:
 * [Ruby on Rails](http://rubyonrails.org/) - The web framework used
 * [Bootstrap](https://getbootstrap.com/) - Used to for styling
 
-## Authors
+## Authors and Contributions
 
 * **Rodrigo Fontes**
  [fontesrp](https://github.com/fontesrp)
+   * Git Master
+   * Created logic for drill group tests, comparing user input to solutions
+   * Created quizz interface
+   * Developed routine for matching answers and solutions (case insentivity, RegExp, RSpec)
+   * Developed Leaderboard logic 
+   
 * **Samantha Tsang**
  [smytsang](https://github.com/smytsang)
- * Created Drill Groups controller
- * Created and styled forms and views (with Bootstrap)
- * Added User Authentication/Authorization
- * Debugged application
+   * Created Drill Groups controller
+   * Created and styled forms and views (with Bootstrap)
+   * Added User Authentication/Authorization
+   * Debugged application
  
 * **Wes Corman Fontes**
  [wcorman](https://github.com/wcorman)
- * Account activation emailer
- * Password Reset Emailer
- * Created initial seeds
- * Added some animation to the home page
- * Added User Authentication/Authorization
+   * Account activation emailer
+   * Password Reset Emailer
+   * Created initial seeds
+   * Added some animation to the home page
+   * Added User Authentication/Authorization
 
 * **Francis Pham**
  [phongpt1989](https://github.com/phongpt1989)
+   * Styling
+   * Continuously tested app for bugs
+   * Implemented validations
+   * Helped creating user interface
+   
 * **Allie Dukuze**
  [nm0s](https://github.com/nm0s)
-
+   * Team leader
+   * Facilited communitcation to ensure project met deadlines
+   * Tested and de-bugged app 
+   * Contributed to user interface 
+   * Contributed to back-end logic 
 
 ## License
 
