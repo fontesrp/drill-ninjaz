@@ -27,8 +27,9 @@ Run the following commands in your terminal, after cloning the repo:
 * **Samantha Tsang**
  [smytsang](https://github.com/smytsang)
  * Created Drill Groups controller
- * Created and styled various forms and views (with Bootstrap)
+ * Created and styled forms and views (with Bootstrap)
  * Added User Authentication/Authorization
+ * Debugged application
  
 * **Wes Corman Fontes**
  [wcorman](https://github.com/wcorman)
