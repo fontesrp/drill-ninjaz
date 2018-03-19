@@ -54,6 +54,7 @@ users = User.all
   points = rand(10..300)
   score = rand(0..points).to_f / 100
   level = ['beginner', 'intermediate', 'advanced'][rand(0..2)]
+
   d = DrillGroup.create({
     name: Faker::ProgrammingLanguage.name,
     description: Faker::StarWars.quote,
@@ -65,6 +66,11 @@ users = User.all
   # Create random number of Questions on the valid Drill Groups
   if d.valid?
     rand(1..10).times.each do |quest|
+
+      questions = ['Write a program that prints ‘Hello World’ to the screen.', 'Write a program that asks the user for a number n and prints the sum of the numbers 1 to n',
+      'Write a program that asks the user for a number n and gives them the possibility to choose between computing the sum and computing the product of 1,…,n', 'Write a program that prints a multiplication table for numbers up to 12',
+    'Print out all prime numbers', 'reverse a list', 'Create function that concatenates two lists. [a,b,c], [1,2,3] → [a,b,c,1,2,3]',
+    '']
       q = Question.create(
         description: "This is question ##{quest + 1}",
         language: Question::VALID_LANGUAGES.sample,
