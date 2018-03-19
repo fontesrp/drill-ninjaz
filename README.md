@@ -22,15 +22,15 @@ Run the following commands in your terminal, after cloning the repo:
 
 ## Authors
 
-* **Rodrigo Fontes**
+ **Rodrigo Fontes**
  [fontesrp](https://github.com/fontesrp)
-* **Samantha Tsang**
+ **Samantha Tsang**
  [smytsang](https://github.com/smytsang)
  * Created Drill Groups controller
  * Created and styled various forms and views (with Bootstrap)
  * Added User Authentication/Authorization
  
-* **Wes Corman Fontes**
+ **Wes Corman Fontes**
  [wcorman](https://github.com/wcorman)
  * Account activation emailer
  * Password Reset Emailer
@@ -38,9 +38,9 @@ Run the following commands in your terminal, after cloning the repo:
  * Added some animation to the home page
  * Added User Authentication/Authorization
 
-* **Francis Pham**
+ **Francis Pham**
  [phongpt1989](https://github.com/phongpt1989)
-* **Allie Dukuze**
+ **Allie Dukuze**
  [nm0s](https://github.com/nm0s)
 
 
