@@ -24,9 +24,21 @@
             placeholder: (@question.language == 'ruby') ? "Wrap your code into a method a method, like so:\ndef foo(params)\n  \# code goes here\nend" : "Write your code here"
           )%>
         </div>
-        <% if @user_answer == "" %>
-          <%= submit_tag 'Submit' %>
-        <% end %>
+        <div class="d-flex justify-content-between">
+          <div>
+            <% if @user_answer == "" %>
+              <%= submit_tag 'Submit', class:"btn btn-outline-secondary" %>
+            <% end %>
+          </div>
+          <div>
+            <% if @next_question.present? %>
+              <% link_text = (@user_answer == "") ? 'Skip' : 'Next Drill' %>
+              <%= link_to link_text, drill_group_question_next_path(@drill_group, @question), class:"btn btn-outline-secondary" %>
+            <% else %>
+              <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question), class:"btn btn-outline-secondary"%>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -60,12 +72,6 @@
     <% end %>
   <% end %>
 
-  <% if @next_question.present? %>
-    <% link_text = (@user_answer == "") ? 'Skip' : 'Next Drill' %>
-    <%= link_to link_text, drill_group_question_next_path(@drill_group, @question) %>
-  <% else %>
-    <%= link_to 'Finish', drill_group_questions_finish_path(@drill_group, @question) %>
-  <% end %>
 </div>
 
 <script type="text/javascript">
