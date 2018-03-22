@@ -37,7 +37,7 @@ Run the following commands in your terminal, after cloning the repo:
    * Added User Authentication/Authorization
    * Debugged application
  
-* **Wes Corman Fontes**
+* **Wes Corman**
  [wcorman](https://github.com/wcorman)
    * Account activation emailer
    * Password Reset Emailer
